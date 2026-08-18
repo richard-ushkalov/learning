@@ -15,7 +15,7 @@
 
     --table-ratio: 1 / 2;
     --table-width: 325px;
-    --table-available-width: (100svh - var(--scene-padding)) / 2;
+    --table-available-width: (100svh - var(--scene-padding) * 2) / 2;
     --table-columns: 2;
     --table-rows: 3;
     --table-bumps-colums: var(--table-columns);
