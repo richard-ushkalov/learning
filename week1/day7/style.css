@@ -56,7 +56,7 @@
     --three-ball-margin: calc(var(--three-ball-x) * -1 + min(var(--table-width), 100%, var(--table-available-width)) - var(--table-side-size) / 2 - var(--table-bump-size) / 2 - var(--ball-size) * 2) 0 0 calc(var(--three-ball-y) * -1 + min(var(--table-width), 100%, var(--table-available-width)) / 2 - var(--table-side-size) / 2 - var(--table-bump-size) / 2 - var(--ball-size) * 2);
     --cue-ball-margin: calc(var(--cue-ball-x) * -1 + min(var(--table-width), 100%, var(--table-available-width)) - var(--table-side-size) / 2 - var(--table-bump-size) / 2 - var(--ball-size) * 2) 0 0 calc(var(--cue-ball-y) * -1 + min(var(--table-width), 100%, var(--table-available-width)) / 2 - var(--table-side-size) / 2 - var(--table-bump-size) / 2 - var(--ball-size) * 2);
 }
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) { /* color-scheme when browser is in dark mode */
     :root {
         --background: black;
         --second-background: white;
