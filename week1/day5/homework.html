@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <title>day5</title>
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+            }
+            body {
+                font-family: Georgia, 'Times New Roman', serif;
+                line-height: 1.5;
+            }
+            button, input, select, textarea { font: inherit; }
+
+            /*  Шкала размеров, коэффициент 1.25:
+                0.875 / 1 / 1.25 / 1.5 / 2 rem
+                Шкала отступов, шаг 4px:
+                0.5 / 0.75 / 1 / 1.5 / 2 / 3 rem
+            */
+
+            h1, h2, h3 { line-height: 1.15; }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin-block: 3rem 1rem;
+                max-width: 30ch;
+            }
+            .tag, .space {
+                font-size: 0.875rem;
+            }
+            p {
+                font-size: 1rem;
+                margin-block: 0 1.5rem;
+                max-width: 60ch;
+            }
+            .author {
+                font-size: 0.875rem;
+                margin-block: 0 0.5rem;
+            }
+
+            .hero {
+                background-color: white;
+                border: 1px solid black;
+                display: flex;
+                flex-direction: column;
+                min-height: 100svh; /* Гарантированный вывод всего hero на экране телефона, даже при адресной строке */
+            }
+            .tags {
+                position: sticky;
+                top: 0;
+                display: flex;
+                justify-content: center;
+                background-color: black;
+                gap: 0.75rem;
+                color: white;
+                z-index: 10;
+            }
+
+            .topic-block {
+                display: flex;
+                flex-direction: column;
+                margin-block: auto;
+                margin-inline: auto;
+                align-items: center;
+                border: 1px solid black;
+                max-width: fit-content;
+                padding: 2rem;
+            }
+            .topic {
+                margin-block: 0 1rem;
+                text-align: center;
+                max-width: 20ch;
+            }
+            .lead {
+                font-size: 1.25rem;
+            }
+            .btn-read {
+                display: block;
+                text-align: center;
+                width: 100%;
+                padding: 0.75em 1.5em;
+                border: 0;
+                background-color: black;
+                color: white;
+                font-size: 1rem;
+                text-decoration: none;
+            }
+            .btn-read--large {
+                font-size: 1.25rem;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-inline: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="hero">
+            <div class="tags">
+                <span class="tag">КИНО</span>
+                <span class="space">·</span>
+                <span class="tag">ИСТОРИЯ ИНДУСТРИИ</span>
+            </div>
+            <div class="topic-block">
+                <h1 class="topic">Тринадцать лет, за которые Голливуд разучился врать</h1>
+                <p class="lead">Между «Бонни и Клайдом» и «Вратами рая» студии окончательно потеряли контроль над собственным производством. И это было лучшее, что случилось с американским кино.</p>
+                <p class="author">Текст: Ричардс Ушкаловс · 6 августа 2026 · 7 минут чтения</p>
+                <a class="btn-read" href="#article">Читать дальше →</a>
+                <!-- <a class="btn-read btn-read--large">Читать дальше →</a> -->
+            </div>
+        </div>
+
+        <div class="content" id="article">
+            <h2>Как развалилась фабрика</h2>
+            <p>В 1948 году Верховный суд обязал студии продать сети кинотеатров: система, при которой одна компания снимала, прокатывала и показывала фильм в собственных залах, была признана монополией. Через несколько лет добавилось телевидение, и посещаемость кинотеатров начала падать. К середине шестидесятых студии всё ещё производили дорогие мюзиклы для зрителя, которого уже не существовало, — «Доктор Дулиттл» 1967 года едва не подкосил Fox, ещё не отошедший от «Клеопатры».</p>
+            <p>Спасение пришло с той стороны, откуда его не ждали. В 1968-м «кодекс Хейса» уступил место возрастным рейтингам, и с экрана исчез цензурный фильтр, тридцать лет определявший, что вообще может произойти в кадре. «Бонни и Клайд», снятый за пару миллионов, собрал в разы больше; «Беспечный ездок» обошёлся примерно в четыреста тысяч и принёс десятки миллионов. Студии не поняли, почему это работает, — но поняли, что дешевле отдать деньги тридцатилетним режиссёрам и не мешать.</p>
+            <h2>Новое лицо на экране</h2>
+            <p>Звезда старого Голливуда была продуктом контракта: студия подбирала внешность, придумывала биографию и годами эксплуатировала одну и ту же маску. Новое поколение пришло из театра и Actors Studio, где Ли Страсберг учил не изображать эмоцию, а добывать её из собственной памяти. Дастин Хоффман в «Выпускнике» — невысокий, неловкий, с лицом человека из очереди в аптеке — стал звездой ровно потому, что не годился в звёзды по прежним меркам.</p>
+            <p>Дальше это стало правилом. Аль Пачино получил роль Майкла Корлеоне только потому, что Коппола месяцами воевал со студией, желавшей видеть кого-то посимпатичнее и поизвестнее. Николсон, Хэкмен, Дюваль, Де Ниро — актёры, чья убедительность строилась на отсутствии киногеничности. Финал у истории обыденный: «Челюсти» и «Звёздные войны» показали, что аттракцион приносит больше, чем характер, а провал «Врат рая» в 1980-м похоронил студию United Artists и заодно всю практику давать режиссёру делать что вздумается.</p>
+        </div>
+    </body>
+</html>
