@@ -37,6 +37,8 @@
     --table-cloth: #282829;
     --table-table__bump: #292929;
 
+    --outline-main: rgba(255, 255, 255, 1);
+
     --ball-size: 0.75rem;
 }
 @media (prefers-color-scheme: dark) { /* color-scheme when browser is in dark mode */
@@ -46,7 +48,14 @@
 
         --text: white;
         --second-text: black;
-        --text-highlight: darkgray;
+        --text-highlight: #4e4e4e;
+
+        --table-table__frame: #d7d7d7;
+        --table-table__corner: #d7d7d7;
+        --table-cloth: #dedddd;
+        --table-table__bump: #e3e3e3;
+
+        --outline-main: rgba(0, 0, 0, 1);
     }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -102,10 +111,10 @@ button, input, select, textarea { font: inherit; }
         opacity: 1;
     }
 }
-@keyframes ball-anim {
+@keyframes fall-down {
     from {
         scale: 40;
-        transform: translateY(-50svh);
+        transform: translateY(-50svh); /* translate instead of top because of browser no need to recalculate other elements */
         opacity: 0;
     }
     to {
@@ -114,12 +123,20 @@ button, input, select, textarea { font: inherit; }
         opacity: 1;
     }
 }
-@keyframes can-grab {
+@keyframes move-up {
     from {
-        border: 1px solid black;
+        translate: 0 0px;
     }
     to {
-        opacity: 3px solid white;
+        translate: 0 -10px;
+    }
+}
+@keyframes ring-blink {
+    from {
+        outline-color: rgba(255, 255, 255, 0);
+    }
+    to {
+        outline-color: var(--outline-main);
     }
 }
 
@@ -442,57 +459,76 @@ a { color: inherit; }
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    animation: ball-anim 600ms var(--bounce-out) 1;
+    animation: fall-down 800ms var(--bounce-out) 100ms 1 both;
 }
 .ball--one {
     background: #d29b10;
     top: 23%;
     left: 70%;
     translate: -50% -50%;
-    animation: ball-anim 400ms var(--bounce-out) 1;
+    animation: fall-down 800ms var(--bounce-out) 200ms 1 both;
 }
 .ball--two {
     background: #315DA4;
     top: 12%;
     left: 10%;
     translate: -50% -50%;
-    animation: ball-anim 600ms var(--bounce-out) 1;
+    animation: fall-down 800ms var(--bounce-out) 100ms 1 both;
 }
 .ball--three {
     background: #BE2118;
     top: 79%;
     left: 60%;
     translate: -50% -50%;
-    animation: ball-anim 500ms var(--bounce-out) 1;
+    animation: fall-down 800ms var(--bounce-out) 300ms 1 both;
 }
 .ball--cue {
     top: 38%;
     left: 30%;
     translate: -50% -50%;
-    animation: ball-anim 800ms var(--bounce-out) 1;
+    animation: fall-down 800ms var(--bounce-out) 1 both;
+}
+@media (prefers-reduced-motion: reduce) { /*    replaced fallen balls with smooth fade-in,
+                                                that matches table anim */
+  .ball {
+    animation:  fall-down 0ms var(--bounce-out) 0ms 1 both,
+                fade-in 800ms var(--ease-out) 1;
+  }
 }
 
 @media (hover: hover) {
     .ball {
+        scale: 1; /* scale instead of width because of browser no need to recalculate other elements */
+        outline: 0px solid white;
         transition: scale 200ms var(--bounce-in-out),
-        box-shadow 200ms var(--bounce-in-out);
+                    outline-width 400ms var(--bounce-in-out),
+                    box-shadow 200ms var(--bounce-in-out);
     }
     .ball:hover {
-        scale: 2;
+        scale: 1.5;
+        outline: 2px solid white;
         box-shadow: inset 0 0 4px 0 rgb(0 0 0 / 0.125),
                     2px 2px 8px 0 rgb(0 0 0 / 0.25);
+
         cursor: grab;
-        border-radius: 50%;
-    }
-    .ball--cue:hover {
-        border: 1px solid black;
+
+        animation:  fall-down 800ms var(--bounce-out) 1 both,
+                    /* move-up 200ms var(--bounce-out) 1 both, */
+                    ring-blink 400ms var(--bounce-out) infinite backwards alternate;
+        animation-play-state:   paused,
+                                /* running, */
+                                running;
     }
     .ball:active {
-        scale: 1.5;
+        scale: 2;
+        outline: 1px solid white;
         box-shadow: none;
+
         cursor: grabbing;
-        border: 2px solid white;
-        border-radius: 50%;
+
+        animation-play-state:   paused,
+                                /* running, */
+                                paused;
     }
 }
 
