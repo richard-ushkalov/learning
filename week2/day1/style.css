@@ -32,10 +32,10 @@
 
     --table-holes-padding: calc(var(--table-side-size) - var(--table-hole-size) / 2);
 
-    --table-table__frame: #1E1E1E;
-    --table-table__corner: #1E1E1E;
+    --table-frame: #1E1E1E;
+    --table-corner: #1E1E1E;
     --table-cloth: #282829;
-    --table-table__bump: #292929;
+    --table-bump: #292929;
 
     --outline-main: rgba(255, 255, 255, 1);
 
@@ -50,10 +50,10 @@
         --second-text: black;
         --text-highlight: #4e4e4e;
 
-        --table-table__frame: #d7d7d7;
-        --table-table__corner: #d7d7d7;
+        --table-frame: #d7d7d7;
+        --table-corner: #d7d7d7;
         --table-cloth: #dedddd;
-        --table-table__bump: #e3e3e3;
+        --table-bump: #e3e3e3;
 
         --outline-main: rgba(0, 0, 0, 1);
     }
@@ -241,7 +241,7 @@ a { color: inherit; }
     flex-direction: column;
 }
 .table__frame {
-    background: var(--table-table__frame);
+    background: var(--table-frame);
     border: 1px solid black;
 }
 .table__frame-top, .table__frame-bottom {
@@ -262,7 +262,7 @@ a { color: inherit; }
     grid-template-rows: repeat(var(--table-rows), calc(100% / var(--table-rows)));
 }
 .table__corner {
-    background: var(--table-table__corner);
+    background: var(--table-corner);
     border: 1px solid black;
     width: var(--table-corner-size);
     aspect-ratio: 1 / 1;
@@ -325,7 +325,7 @@ a { color: inherit; }
     grid-template-rows: var(--table-bump-size) repeat(2, calc((100% - var(--table-bump-size) * 2) / 2)) var(--table-bump-size);
 }
 .table__bump {
-    background: var(--table-table__bump);
+    background: var(--table-bump);
     box-shadow: inset 0 0 4px 0 rgb(0 0 0 / 0.25),
     0px 0px 4px 0 rgb(0 0 0 / 0.25);
 }
