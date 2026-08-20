@@ -58,23 +58,15 @@
         --outline-main: rgba(0, 0, 0, 1);
     }
 }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
 @media (width >= 51rem) {   /*  (650 (table) + 16x2 (padding) + 8x16 (info-card)) / 16 = 50.625 */
     :root {
         --table-ratio: 2 / 1;
         --table-width: 650px;
-        --table-available-width: (100svh - var(--scene-padding)) * 2;
+        --table-available-width: (100svh - var(--scene-padding) * 2) * 2;
         --table-columns: 3;
         --table-rows: 2;
-        --table-bumps-colums: calc(var(--table-columns) + 1);
-        --table-bumps-rows: var(--table-rows);
+        --table-bump-colums: calc(var(--table-columns) + 1);
+        --table-bump-rows: var(--table-rows);
     }
 }
 
@@ -176,7 +168,7 @@ a { color: inherit; }
 .info-card__value--main {
     font-size: 1rem;
 }
-.info-card__name, .value {
+.info-card__name {
     font-weight: var(--weight-light);
 }
 .info-card__name--main, .info-card__value--main {
@@ -255,7 +247,7 @@ a { color: inherit; }
 .table__corner--top-right, .table__corner--bottom-left { align-self: center; }
 .table__corner--bottom-center, .table__corner--bottom-right { align-self: flex-end; }
 @media (width >= 51rem) {
-    .table__corner--top-left, .table__corner--top-bottom, .table__corner--top-right { align-self: flex-start; }
+    .table__corner--top-left, .table__corner--top-center, .table__corner--top-right { align-self: flex-start; }
     .table__corner--bottom-left, .table__corner--bottom-center, .table__corner--bottom-right { align-self: flex-end; }
     .table__corner--top-left, .table__corner--bottom-left { justify-self: flex-start; }
     .table__corner--top-center, .table__corner--bottom-center { justify-self: center; }
@@ -448,7 +440,7 @@ a { color: inherit; }
     align-items: center;
 }
 .ball__value {
-    font-size: 0.25rem;
+    font-size: 0.2rem;
     text-align: center;
     font-weight: var(--weight-bold);
     user-select: none;
