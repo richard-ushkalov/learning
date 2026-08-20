@@ -115,12 +115,37 @@ button, input, select, textarea { font: inherit; }
         opacity: 1;
     }
 }
-@keyframes move-up {
+@keyframes ring-blink {
     from {
-        translate: 0 0px;
+        outline-color: rgba(255, 255, 255, 0);
     }
     to {
-        translate: 0 -10px;
+        outline-color: var(--outline-main);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    @keyframes fade-in {
+    from {
+        scale: 1;
+        transform: 0;
+        opacity: 0;
+    }
+    to {
+        scale: 1;
+        transform: 0;
+        opacity: 1;
+    }
+}
+@keyframes fall-down {
+    from {
+        scale: 1;
+        transform: 0;
+        opacity: 0;
+    }
+    to {
+        scale: 1;
+        transform: 0;
+        opacity: 1;
     }
 }
 @keyframes ring-blink {
@@ -130,6 +155,7 @@ button, input, select, textarea { font: inherit; }
     to {
         outline-color: var(--outline-main);
     }
+}
 }
 
 h1, h2, h3 {
@@ -429,6 +455,12 @@ a { color: inherit; }
     border-radius: 50%;
     box-shadow: inset 0 0 4px 0 rgb(0 0 0 / 0.25),
                 2px 2px 4px 0 rgb(0 0 0 / 0.5);
+
+    animation:  fall-down 800ms var(--bounce-out) 1 both,
+                ring-blink 400ms var(--bounce-out) 0ms infinite alternate; /*   blinking infinite animation shows to user
+                                                                                that he can interact with the object */
+    animation-play-state:   running,
+                            paused;
 }
 .ball__inside-frame {
     width: calc(var(--ball-size) / 1.5);
@@ -451,40 +483,50 @@ a { color: inherit; }
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    animation: fall-down 800ms var(--bounce-out) 100ms 1 both;
+
+    animation-delay:    500ms,
+                        0ms;
 }
 .ball--one {
     background: #d29b10;
     top: 23%;
     left: 70%;
     translate: -50% -50%;
-    animation: fall-down 800ms var(--bounce-out) 200ms 1 both;
+
+    animation-delay:    400ms,
+                        0ms;
 }
 .ball--two {
     background: #315DA4;
     top: 12%;
     left: 10%;
     translate: -50% -50%;
-    animation: fall-down 800ms var(--bounce-out) 100ms 1 both;
+
+    animation-delay:    300ms,
+                        0ms;
 }
 .ball--three {
     background: #BE2118;
     top: 79%;
     left: 60%;
     translate: -50% -50%;
-    animation: fall-down 800ms var(--bounce-out) 300ms 1 both;
+
+    animation-delay:    200ms,
+                        0ms;
 }
 .ball--cue {
     top: 38%;
     left: 30%;
     translate: -50% -50%;
-    animation: fall-down 800ms var(--bounce-out) 1 both;
+
+    animation-delay:    100ms,
+                        0ms;
 }
 @media (prefers-reduced-motion: reduce) { /*    replaced fallen balls with smooth fade-in,
                                                 that matches table anim */
-  .ball {
-    animation:  fall-down 0ms var(--bounce-out) 0ms 1 both,
-                fade-in 800ms var(--ease-out) 1;
+    .ball {
+        animation:  fall-down 0ms var(--bounce-out) 1 both,
+                    fade-in 800ms var(--ease-out) 0ms 1;
   }
 }
 
@@ -504,11 +546,7 @@ a { color: inherit; }
 
         cursor: grab;
 
-        animation:  fall-down 800ms var(--bounce-out) 1 both,
-                    /* move-up 200ms var(--bounce-out) 1 both, */
-                    ring-blink 400ms var(--bounce-out) infinite backwards alternate;
         animation-play-state:   paused,
-                                /* running, */
                                 running;
     }
     .ball:active {
@@ -519,7 +557,6 @@ a { color: inherit; }
         cursor: grabbing;
 
         animation-play-state:   paused,
-                                /* running, */
                                 paused;
     }
 }
