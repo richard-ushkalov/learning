@@ -22,8 +22,8 @@
     --table-available-width: (100svh - var(--scene-padding) * 2) / 2;
     --table-columns: 2;
     --table-rows: 3;
-    --table-bumps-colums: var(--table-columns);
-    --table-bumps-rows: calc(var(--table-rows) + 1);
+    --table-bump-colums: var(--table-columns);
+    --table-bump-rows: calc(var(--table-rows) + 1);
 
     --table-side-size: 25px;
     --table-corner-size: 50px;
