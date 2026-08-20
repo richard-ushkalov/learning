@@ -124,38 +124,35 @@ button, input, select, textarea { font: inherit; }
     }
 }
 @media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
     @keyframes fade-in {
-    from {
-        scale: 1;
-        transform: 0;
-        opacity: 0;
+        from {
+            scale: 1;
+            transform: none;
+            opacity: 0;
+        }
+        to {
+            scale: 1;
+            transform: none;
+            opacity: 1;
+        }
     }
-    to {
-        scale: 1;
-        transform: 0;
-        opacity: 1;
+    @keyframes fall-down {
+        from {
+            scale: 1;
+            transform: none;
+            opacity: 0;
+        }
+        to {
+            scale: 1;
+            transform: none;
+            opacity: 1;
+        }
     }
-}
-@keyframes fall-down {
-    from {
-        scale: 1;
-        transform: 0;
-        opacity: 0;
-    }
-    to {
-        scale: 1;
-        transform: 0;
-        opacity: 1;
-    }
-}
-@keyframes ring-blink {
-    from {
-        outline-color: rgba(255, 255, 255, 0);
-    }
-    to {
-        outline-color: var(--outline-main);
-    }
-}
 }
 
 h1, h2, h3 {
@@ -225,7 +222,7 @@ a { color: inherit; }
     display: flex;
     width: min(var(--table-width), 100%, var(--table-available-width));
     aspect-ratio: var(--table-ratio);
-    animation: fade-in 800ms var(--ease-out) 1;
+    animation: fade-in 800ms var(--ease-out) both 1;
 }
 .table__layer {
     position: absolute;
@@ -522,13 +519,6 @@ a { color: inherit; }
     animation-delay:    100ms,
                         0ms;
 }
-@media (prefers-reduced-motion: reduce) { /*    replaced fallen balls with smooth fade-in,
-                                                that matches table anim */
-    .ball {
-        animation:  fall-down 0ms var(--bounce-out) 1 both,
-                    fade-in 800ms var(--ease-out) 0ms 1;
-  }
-}
 
 @media (hover: hover) {
     .ball {
@@ -546,7 +536,7 @@ a { color: inherit; }
 
         cursor: grab;
 
-        animation-play-state:   paused,
+        animation-play-state:   running,
                                 running;
     }
     .ball:active {
