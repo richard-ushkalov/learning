@@ -22,7 +22,7 @@
     --table-available-width: (100svh - var(--scene-padding) * 2) / 2;
     --table-columns: 2;
     --table-rows: 3;
-    --table-bump-colums: var(--table-columns);
+    --table-bump-columns: var(--table-columns);
     --table-bump-rows: calc(var(--table-rows) + 1);
 
     --table-side-size: 25px;
@@ -65,7 +65,7 @@
         --table-available-width: (100svh - var(--scene-padding) * 2) * 2;
         --table-columns: 3;
         --table-rows: 2;
-        --table-bump-colums: calc(var(--table-columns) + 1);
+        --table-bump-columns: calc(var(--table-columns) + 1);
         --table-bump-rows: var(--table-rows);
     }
 }
@@ -318,7 +318,7 @@ a { color: inherit; }
         "top-left top-right"
         "bottom-left bottom-right"
         "bottom bottom";
-    grid-template-columns: repeat(var(--table-bump-colums), calc(100% / var(--table-bump-colums)));
+    grid-template-columns: repeat(var(--table-bump-columns), calc(100% / var(--table-bump-columns)));
     grid-template-rows: var(--table-bump-size) repeat(2, calc((100% - var(--table-bump-size) * 2) / 2)) var(--table-bump-size);
 }
 .table__bump {
