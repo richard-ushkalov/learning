@@ -111,21 +111,115 @@ a {
 /* HERO IMAGE */
 
 .photo-frame {
-    height: 80px;
+    height: calc(100svh - var(--header-h));
     padding: 0.75rem;
     padding-bottom: 4rem;
     background-color: white;
-}
-
-.photo-frame__layout {
-    display: flex;
     overflow: hidden;
-    justify-content: center;
-    align-items: center;
 }
 
 .photo-frame__hero-image {
-    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+}
+
+/* DIVIDER */
+
+.divider {
+    display: flex;
+    flex-direction: column;
+    margin-block: 2rem;
+    padding-inline: 0.5rem;
+}
+.divider__title {
+    position: relative;
     display: block;
+    padding-block-end: 0.5rem;
+}
+.divider__title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0.25rem;
+    background-color: white;
+}
+.divider__text {
+    display: block;
+    text-align: end;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    aspect-ratio: 1;
+
+    padding: 0.5rem;
+    gap: 0.5rem;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* FOOTER-HERO */
+
+.footer-hero {
+    aspect-ratio: 2 / 1;
+    position: relative;
+    display: flex;
+    margin-inline: 0.5rem;
+}
+
+.footer-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.footer-hero__container::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 45%;
+    backdrop-filter: blur(10px);
+    mask-image: linear-gradient(to top, black 40%, transparent);
+    pointer-events: none;
+}
+
+.footer-hero__text {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    display: block;
+    text-align: center;
+    margin-block: 0;
+    text-align: center;
+    mix-blend-mode: difference;
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 0.5rem;
+    margin-block: 4rem;
+    gap: 0.5rem;
+}
+
+.avatar {
+    width: 24px;
+    aspect-ratio: 1;
 }
