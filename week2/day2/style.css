@@ -1,10 +1,13 @@
 /* VARIABLES */
 
 :root {
+    --header-h: 5rem;
+
     --background: black;
     --text: white;
 
-    --weight-light: 100;
+    --weight-extra-light: 50;
+    --weight-light: 150;
     --weight-medium: 450;
     --weight-bold: 900;
 }
