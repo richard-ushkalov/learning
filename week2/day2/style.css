@@ -72,34 +72,37 @@ a {
 /* HEADER */
 
 .header {
+    min-height: var(--header-h);
     padding-inline: 0.5rem;
-    width: 100%;
     position: sticky;
     top: 0;
-    flex: 1 1 0;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     backdrop-filter: blur(10px);
-    align-self: center; /* ask about `stretch` */
+    mix-blend-mode:difference;
+    z-index: 100;
 }
 
 .header__title { display: flex; }
 
-.header__text { margin-block: 0; }
+.header__text {
+    margin-block: 0;
+    color:white;
+}
 
-.header__text--bold { font-weight: var(--weight-bold); }
-.header__text--medium { font-weight: var(--weight-medium); }
-.header__text--light { font-weight: var(--weight-light); }
+.text--bold { font-weight: var(--weight-bold); }
+.text--medium { font-weight: var(--weight-medium); }
+.text--light { font-weight: var(--weight-light); }
+.text--extra-light { font-weight: var(--weight-extra-light); }
 
-.header__text--italic { font-style: italic; }
+.text--italic { font-style: italic; }
 
-.header__text--space { padding-left: 1ch; }
+.text--space { padding-left: 1ch; }
 
-.header__divider {
-    width: 8px;
+.icon {
+    width: 24px;
     aspect-ratio: 1;
-    background-color: var(--text);
-    border-radius: 50%;
     align-self: center;
 }
 
