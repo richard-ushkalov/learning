@@ -26,6 +26,12 @@ body {
 }
 button, input, select, textarea { font: inherit; }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* FONT */
 
 /*  Font scale, 1.3
