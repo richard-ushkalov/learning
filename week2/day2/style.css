@@ -67,15 +67,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 0.5rem;
-    align-content: center; /* ask about `stretch` */
-}
-
-.hero-layout {
-    height: 100svh;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
 }
 
 /* HEADER */
