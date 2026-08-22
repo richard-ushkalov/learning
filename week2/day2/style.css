@@ -56,7 +56,10 @@ p {
     font-size: 1rem;
     margin-block: 0 1.25rem;
 }
-a { font-size: 0.77rem; }
+a {
+    font-size: 0.77rem;
+    color: inherit;
+}
 
 /* LAYOUT */
 
