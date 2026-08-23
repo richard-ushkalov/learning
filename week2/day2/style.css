@@ -139,7 +139,7 @@ a {
     .icon:hover {
         color: var(--background);
         background-color: var(--text);
-        border: 50%;
+ 
     }
 }
 
