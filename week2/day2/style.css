@@ -163,7 +163,7 @@ a {
     overflow: hidden;
 }
 
-.image {
+.grid__image {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
@@ -219,7 +219,7 @@ a {
     gap: 0.5rem;
 }
 
-.avatar {
-    width: 24px;
+.footer__avatar {
+    width: 1.75rem;
     aspect-ratio: 1;
 }
