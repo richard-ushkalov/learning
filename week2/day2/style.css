@@ -3,6 +3,9 @@
 :root {
     --header-h: 5rem;
 
+    --cue-width: 0.25rem;
+    --hit-distance: 0.75rem;
+
     --background: black;
     --text: white;
 
@@ -84,11 +87,31 @@ a {
     z-index: 100;
 }
 
-.header__title { display: flex; }
+.header__title {
+    position: relative;
+    display: flex;
+}
+.header__title::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 50%;
+    height: 100%;
+    width: var(--cue-width);
+    background-color: var(--text);
+    translate: -50% calc(-1 * var(--hit-distance));
+}
+
+.header__description {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
 
 .header__text {
+    position: relative;
     margin-block: 0;
-    color:white;
+    color: var(--text);
 }
 
 .text--bold { font-weight: var(--weight-bold); }
@@ -101,12 +124,18 @@ a {
 .text--space { padding-left: 1ch; }
 
 .icon {
+    position: relative;
     width: 24px;
     aspect-ratio: 1;
     align-self: center;
 }
-
-.header__description { align-self: flex-end; }
+@media(hover: hover) {
+    .icon:hover {
+        color: var(--background);
+        background-color: var(--text);
+        border: 50%;
+    }
+}
 
 /* HERO IMAGE */
 
@@ -140,11 +169,9 @@ a {
 .divider__title::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: auto 0 0 0;
     height: 0.25rem;
-    background-color: white;
+    background-color: var(--text);
 }
 .divider__text {
     display: block;
@@ -175,7 +202,6 @@ a {
 .footer-hero {
     aspect-ratio: 2 / 1;
     position: relative;
-    display: flex;
     margin-inline: 0.5rem;
 }
 
@@ -200,12 +226,10 @@ a {
 .footer-hero__text {
     font-size: clamp(0.75rem, 0.3125rem + 3vw, 2rem); /* 320px 0.75rem and 900px 2rem */ /* 0.03px or 3vw */
     max-width:100%;
-    bottom: 0;
     position: absolute;
     display: block;
     text-align: center;
     inset: auto 0 0 0;
-    justify-self: center;
     mix-blend-mode: difference;
 }
 
