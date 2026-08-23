@@ -8,6 +8,7 @@
 
     --background: black;
     --text: white;
+    --accent: red;
 
     --weight-extra-light: 50;
     --weight-light: 150;
@@ -33,6 +34,11 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+::selection {
+    background-color: var(--accent);
+    color: var(--background);
 }
 
 /* FONT */
