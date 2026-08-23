@@ -146,6 +146,7 @@ a {
 /* HERO IMAGE */
 
 .photo-frame {
+    margin-inline: 0.5rem;
     height: calc(100svh - var(--header-h));
     padding: 0.75rem;
     padding-bottom: 4rem;
