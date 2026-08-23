@@ -24,9 +24,22 @@
             </header>
 
             <div class="photo-frame">
+                <!-- `alt` represent what inside it — photo of table inside pool club -->
                 <picture>
-                    <source media="(width >= 51rem)" srcset="images/table-side/table-side-800.jpg" width="533" height="800">
-                    <img class="photo-frame__hero-image" width="842" height="1264" src="images/table-front/table-front-1600.jpg" fetchpriority="high" alt="Billiard table with starting rack">
+                    <source
+                            media="(width >= 51rem)"
+                            srcset="images/table-side/table-side-400.jpg 400w,
+                                    images/table-side/table-side-800.jpg 800w,
+                                    images/table-side/table-side-1600.jpg 1600w"
+                            width="533" height="800">
+                    <img
+                        class="photo-frame__hero-image"
+                        srcset="images/table-front/table-front-400.jpg 400w,
+                                images/table-front/table-front-800.jpg 800w,
+                                images/table-front/table-front-1600.jpg 1600w"
+                        width="842" height="1264"
+                        fetchpriority="high"
+                        alt="Billiard table with starting rack">
                 </picture>
             </div>
 
