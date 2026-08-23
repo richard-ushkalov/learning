@@ -198,13 +198,14 @@ a {
 }
 
 .footer-hero__text {
-    width: 100%;
+    font-size: clamp(0.75rem, 0.3125rem + 3vw, 2rem); /* 320px 0.75rem and 900px 2rem */ /* 0.03px or 3vw */
+    max-width:100%;
     bottom: 0;
     position: absolute;
     display: block;
     text-align: center;
-    margin-block: 0;
-    text-align: center;
+    inset: auto 0 0 0;
+    justify-self: center;
     mix-blend-mode: difference;
 }
 
