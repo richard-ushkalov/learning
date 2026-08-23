@@ -25,8 +25,8 @@
 
             <div class="photo-frame">
                 <picture>
-                    <source media="(width >= 51rem)" srcset="images/table-wide-800.jpg">
-                    <img class="photo-frame__hero-image" width="842" height="1264" src="images/table-tall-1600.jpg" alt="Billiard table with starting rack">
+                    <source media="(width >= 51rem)" srcset="images/table-side/table-side-800.jpg" width="533" height="800">
+                    <img class="photo-frame__hero-image" width="842" height="1264" src="images/table-front/table-front-1600.jpg" fetchpriority="high" alt="Billiard table with starting rack">
                 </picture>
             </div>
 
@@ -37,24 +37,24 @@
 
             <div class="grid">
                 <picture>
-                    <source type="media/avif" srcset="images/pyramide-1600.avif">
-                    <source type="media/webp" srcset="images/pyramide-800.webp">
-                    <img class="image" width="266" height="400" src="images/pyramide-400.jpg" alt="Balls inside pyramide">
+                    <source type="image/avif" srcset="images/pyramid/pyramid-1600.avif">
+                    <source type="image/webp" srcset="images/pyramid/pyramid-800.webp">
+                    <img class="grid__image" width="266" height="400" src="images/pyramid/pyramid-400.jpg" loading="lazy" decoding="async" alt="Balls racked in a triangle, girls hand holds ball">
                 </picture>
                 <picture>
-                    <source type="media/avif" srcset="images/balls-hit-1600.avif">
-                    <source type="media/webp" srcset="images/balls-hit-800.webp">
-                    <img class="image" width="266" height="400" src="images/balls-hit-400.jpg" alt="Cue hitting balls">
+                    <source type="image/avif" srcset="images/balls-hit/balls-hit-1600.avif">
+                    <source type="image/webp" srcset="images/balls-hit/balls-hit-800.webp">
+                    <img class="grid__image" width="266" height="400" src="images/balls-hit/balls-hit-400.jpg" loading="lazy" decoding="async" alt="Cue hitting balls">
                 </picture>
                 <picture>
-                    <source type="media/avif" srcset="images/eight-ball-1600.avif">
-                    <source type="media/webp" srcset="images/eight-ball-800.webp">
-                    <img class="image" width="266" height="400" src="images/eight-ball-400.jpg" alt="Cue aimed on the eight-ball">
+                    <source type="image/avif" srcset="images/eight-ball/eight-ball-1600.avif">
+                    <source type="image/webp" srcset="images/eight-ball/eight-ball-800.webp">
+                    <img class="grid__image" width="266" height="400" src="images/eight-ball/eight-ball-400.jpg" loading="lazy" decoding="async" alt="Cue aimed on the eight-ball">
                 </picture>
                 <picture>
-                    <source type="media/avif" srcset="images/pyramide-two-1600.avif">
-                    <source type="media/webp" srcset="images/pyramide-two-800.webp">
-                    <img class="image" width="266" height="400" src="images/pyramide-two-400.jpg" alt="Balls inside pyramide">
+                    <source type="image/avif" srcset="images/pyramid-two/pyramid-two-1600.avif">
+                    <source type="image/webp" srcset="images/pyramid-two/pyramid-two-800.webp">
+                    <img class="grid__image" width="266" height="400" src="images/pyramid-two/pyramid-two-400.jpg" loading="lazy" decoding="async" alt="Balls racked in a triangle">
                 </picture>
             </div>
 
@@ -68,23 +68,29 @@
                 <div class="footer-hero__container">
                     <img
                         class="footer-hero__image"
-                        src="images/cloth-800.jpg"
-                        srcset="images/cloth-400.jpg,  400w
-                                images/cloth-800.jpg,  800w
-                                images/cloth-1600.jpg, 1600w"
-                        sizes="100vw"
+                        src="images/cloth/cloth-800.jpg"
+                        srcset="images/cloth/cloth-400.jpg  400w,
+                                images/cloth/cloth-800.jpg  800w,
+                                images/cloth/cloth-1600.jpg 1600w"
+                        loading="lazy"
+                        decoding="async"
+                        sizes="calc(100vw - 1rem)"
                         width="800" height="533"
                         alt="Simonis 860 Cloth">
                 </div>
-                <figcaption class="footer-hero__text text--extra-light">CLOTH BY SIMONIS ALWAYS USED IN TOP TOURNAMENTS ACROSS THE WORLD</p>
+                <figcaption class="footer-hero__text text--extra-light">CLOTH BY SIMONIS ALWAYS USED IN TOP TOURNAMENTS ACROSS THE WORLD</figcaption>
             </figure>
 
             <footer class="footer">
                 <a href="https://github.com/richard-ushkalov">github @ richard-ushkalov</a>
                 <img   
-                    class="avatar" 
-                    src="images/avatar.jpg"
-                    srcset="avatar.jpg x1, avatar@2x.jpg x2, avatar@3x.jpg x3"
+                    class="footer__avatar"
+                    src="images/avatar/avatar.jpg"
+                    srcset="images/avatar/avatar.jpg 1x,
+                            images/avatar/avatar@2x.jpg 2x,
+                            images/avatar/avatar@3x.jpg 3x"
+                    loading="lazy"
+                    decoding="async"
                     width="200" height="200"
                     alt="Avatar of Richard Ushkalov">
             </footer>
