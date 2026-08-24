@@ -7,111 +7,119 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form index="" get="get">
+        <form class="form" action="" method="get">
             <!-- name, email, phone number -->
             <fieldset class="group">
-                <legend class="group-legend">
+                <legend class="group__legend">
                     Введите Ваши данные
                 </legend>
 
-                <label>
-                    Имя
-                    <input type="text" name="first-name" required>
-                </label>
+                <div class="group__body">
+                    <label>
+                        Имя
+                        <input class="form__text" type="text" name="first-name" required>
+                    </label>
 
-                <label>
-                    Фамилия
-                    <input type="text" name="second-name" required>
-                </label>
+                    <label>
+                        Фамилия
+                        <input class="form__text" type="text" name="second-name" required>
+                    </label>
 
-                <label>
-                    E-mail
-                    <input inputmode="email" type="email" autocomplete="email" name="email" required>
-                </label>
+                    <label>
+                        E-mail
+                        <input class="form__text" type="email" autocomplete="email" name="email" required>
+                    </label>
 
-                <label>
-                    Номер телефона
-                    <input inputmode="numeric" type="text" name="phone-number" pattern="[0-9]+" required>
-                </label>
+                    <label>
+                        Номер телефона
+                        <input class="form__text" type="tel" name="phone-number" autocomplete="tel">
+                    </label>
+                </div>
             </fieldset>
 
             <!-- block `format`: online, in studio, hybrid -->
             <fieldset class="group">
-                <legend class="group-legend">
+                <legend class="group__legend">
                     Формат занятий
                 </legend>
 
-                <label>
-                    Онлайн
-                    <input type="radio" name="class-format" value="online" required>
-                </label>
+                <div class="group__body">
+                    <label>
+                        Онлайн
+                        <input class="form__radio" type="radio" name="class-format" value="online" required>
+                    </label>
 
-                <label>
-                    В студии
-                    <input type="radio" name="class-format" value="in-studio">
-                </label>
+                    <label>
+                        В студии
+                        <input class="form__radio" type="radio" name="class-format" value="in-studio">
+                    </label>
 
-                <label>
-                    Гибрид
-                    <input type="radio" name="class-format" value="hybrid">
-                </label>
+                    <label>
+                        Гибрид
+                        <input class="form__radio" type="radio" name="class-format" value="hybrid">
+                    </label>  
+                </div>
+         
             </fieldset>
 
             <!-- block `areas of interest`: billiard, golf, tennis, ping-pong -->
             <fieldset class="group">
-                <legend class="group-legend">
+                <legend class="group__legend">
                     Интересующие направления
                 </legend>
 
-                <label>
-                    Бильярд
-                    <input type="checkbox" name="area-of-interest" value="billiard">
-                </label>
+                <div class="group__body">
+                    <label>
+                        Бильярд
+                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="billiard">
+                    </label>
 
-                <label>
-                    Гольф
-                    <input type="checkbox" name="area-of-interest" value="golf">
-                </label>
+                    <label>
+                        Гольф
+                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="golf">
+                    </label>
 
-                <label>
-                    Теннис
-                    <input type="checkbox" name="area-of-interest" value="tennis">
-                </label>
+                    <label>
+                        Теннис
+                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="tennis">
+                    </label>
 
-                <label>
-                    Пинг-понг
-                    <input type="checkbox" name="area-of-interest" value="ping-pong">
-                </label>
+                    <label>
+                        Пинг-понг
+                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="ping-pong">
+                    </label>
+                </div>
             </fieldset>
 
             <!-- block `promo`: exacly 8 symbols, letters and numbers -->
-            <label>
-                Промокод
-                <input type="text" name="promo" minlength="8" maxlength="8">
-            </label>
+            <div class="group__body">
+                <label>
+                    Промокод
+                    <input class="form__text" type="text" name="promo" pattern="[a-z0-9]" minlength="8" maxlength="8"
+                    titl="Только символы и цифры, всего 8 символов">
+                </label>
+            </div>
 
             <!-- block `comment`: min 30 symbols (not necessary) -->
-            <label>
-                Комментарий
-                <input type="text" name="comment" minlength="30">
-            </label>
+            <div class="group__body">
+                <label>
+                    Комментарий
+                    <textarea class="form__text" name="comment" minlength="30"></textarea>
+                </label>
+            </div>
 
             <!-- checkbox `agreement` -->
-            <fieldset class="group">
-                <legend class="group-legend">
-                    Вы согласны на обработку персональных данных?
-                </legend>
-
+            <div class="group__body">
                 <label>
                     Согласен(-на) на обработку персональных данных
-                    <input type="checkbox" name="agreement" value="agree">
+                    <input class="form__checkbox" type="checkbox" name="agreement" value="agree">
                 </label>
-            </fieldset>
+            </div>
 
             <!-- 2 buttons: sign up, clear the form -->
             <div class="form__actions">
-                <button type="submit">Записаться</button>
-                <button type="button">Очистить форму</button>
+                <button class="button--green" type="submit">Записаться</button>
+                <button class="button--red" type="reset">Очистить форму</button>
             </div>
         </form>
     </body>
