@@ -19,6 +19,10 @@ button, input, select, textarea {
     gap: 8px;
 }
 
+.text--capitalize {
+    text-transform: uppercase;
+}
+
 .group {
     border: 0;
     margin: 0;
@@ -66,11 +70,10 @@ button, input, select, textarea {
     align-items: center;
     text-align: center;
 }
-.group__text, .line__text { padding: 8px; }
 .group__radio { border-radius: 50%; }
 .group__checkbox, .line__checkbox { border-radius: 8px; }
 
-.group__text:hover, .line__text:hover, .group__radio:hover, .group__checkbox:hover, .line__checkbox:hover { outline-color: gray; }
+.group__text:hover, .line__text:hover, .line__comment:hover, .group__radio:hover, .group__checkbox:hover, .line__checkbox:hover { outline-color: gray; }
 
 .group__radio::before, .group__checkbox::before, .line__checkbox::before  {
     content: "";
@@ -96,12 +99,12 @@ button, input, select, textarea {
 }
 .group__checkbox:checked::before, .line__checkbox:checked::before { content: "✓"; }
 
-.group__text:focus-visible, .line__text:focus-visible, .group__radio:focus-visible, .group__checkbox:focus-visible, .line__checkbox:focus-visible, .button:focus-visible {
+.group__text:focus-visible, .line__text:focus-visible, .line__comment:focus-visible, .group__radio:focus-visible, .group__checkbox:focus-visible, .line__checkbox:focus-visible, .button:focus-visible {
     outline-offset: 2px;
     outline: 2px solid plum;
 }
 
-.group__text, .line__text, .button {
+.group__text, .line__text, .line__comment, .button {
     outline: 1px solid black;
     border: none;
     border-radius: 8px;
