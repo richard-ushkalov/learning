@@ -17,22 +17,22 @@
                 <div class="group__body">
                     <label>
                         Имя
-                        <input class="form__text" type="text" name="first-name" required>
+                        <input class="group__text" type="text" name="first-name" required>
                     </label>
 
                     <label>
                         Фамилия
-                        <input class="form__text" type="text" name="second-name" required>
+                        <input class="group__text" type="text" name="second-name" required>
                     </label>
 
                     <label>
                         E-mail
-                        <input class="form__text" type="email" autocomplete="email" name="email" required>
+                        <input class="group__text" type="email" autocomplete="email" name="email" required>
                     </label>
 
                     <label>
                         Номер телефона
-                        <input class="form__text" type="tel" name="phone-number" autocomplete="tel">
+                        <input class="group__text" type="tel" name="phone-number" autocomplete="tel">
                     </label>
                 </div>
             </fieldset>
@@ -46,17 +46,17 @@
                 <div class="group__body">
                     <label>
                         Онлайн
-                        <input class="form__radio" type="radio" name="class-format" value="online" required>
+                        <input class="group__radio" type="radio" name="class-format" value="online" required>
                     </label>
 
                     <label>
                         В студии
-                        <input class="form__radio" type="radio" name="class-format" value="in-studio">
+                        <input class="group__radio" type="radio" name="class-format" value="in-studio">
                     </label>
 
                     <label>
                         Гибрид
-                        <input class="form__radio" type="radio" name="class-format" value="hybrid">
+                        <input class="group__radio" type="radio" name="class-format" value="hybrid">
                     </label>  
                 </div>
          
@@ -71,55 +71,55 @@
                 <div class="group__body">
                     <label>
                         Бильярд
-                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="billiard">
+                        <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="billiard">
                     </label>
 
                     <label>
                         Гольф
-                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="golf">
+                        <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="golf">
                     </label>
 
                     <label>
                         Теннис
-                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="tennis">
+                        <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="tennis">
                     </label>
 
                     <label>
                         Пинг-понг
-                        <input class="form__checkbox" type="checkbox" name="area-of-interest[]" value="ping-pong">
+                        <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="ping-pong">
                     </label>
                 </div>
             </fieldset>
 
             <!-- block `promo`: exacly 8 symbols, letters and numbers -->
-            <div class="group__body">
+            <div class="line__body">
                 <label>
                     Промокод
-                    <input class="form__text" type="text" name="promo" pattern="[a-z0-9]" minlength="8" maxlength="8"
-                    titl="Только символы и цифры, всего 8 символов">
+                    <input class="line__text" type="text" name="promo" pattern="[a-Z0-9]{8}" maxlength="8"
+                    title="Только символы и цифры, всего 8 символов">
                 </label>
             </div>
 
             <!-- block `comment`: min 30 symbols (not necessary) -->
-            <div class="group__body">
+            <div class="line__body">
                 <label>
                     Комментарий
-                    <textarea class="form__text" name="comment" minlength="30"></textarea>
+                    <textarea class="line__text" name="comment" minlength="30"></textarea>
                 </label>
             </div>
 
             <!-- checkbox `agreement` -->
-            <div class="group__body">
+            <div class="line__body">
                 <label>
                     Согласен(-на) на обработку персональных данных
-                    <input class="form__checkbox" type="checkbox" name="agreement" value="agree">
+                    <input class="line__checkbox" type="checkbox" name="agreement" value="agree">
                 </label>
             </div>
 
             <!-- 2 buttons: sign up, clear the form -->
             <div class="form__actions">
-                <button class="button--green" type="submit">Записаться</button>
-                <button class="button--red" type="reset">Очистить форму</button>
+                <button class="button button--agree" type="submit">Записаться</button>
+                <button class="button button--disagree" type="reset">Очистить форму</button>
             </div>
         </form>
     </body>

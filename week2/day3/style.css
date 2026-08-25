@@ -34,7 +34,7 @@ button, input, select, textarea {
     width: 100%;
 }
 
-.group__body {
+.group__body, .line__body {
     background-color: gainsboro;
     clear: both;
     display: flex;
@@ -52,125 +52,62 @@ button, input, select, textarea {
     gap: 8px;
 }
 
-/* INPUT */
-
-.form__text {
-    outline-offset: 0px;
-    outline: 1px solid black;
-    border: none;
-    border-radius: 8px;
-    background: white;
-    padding: 8px;
-}
-.form__text:hover {
-    outline-color: gray;
-    color: gray;
-}
-.form__text:focus-visible {
-    outline-offset: -2px;
-    outline: 2px solid plum;
-    border: none;
-    color: plum;
-}
-
-/* RADIO */
-
-.form__radio {
+.group__radio, .group__checkbox, .line__checkbox {
     appearance: none;
     width: 20px;
     height: 20px;
-    outline-offset: 0px;
     outline: 1px solid black;
     border: none;
     border-radius: 50%;
-    background: white;
+    color: white;
+    background-color: white;
     display: grid;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
-.form__radio:hover {
-    outline-color: gray;
-    color: gray;
-}
-.form__radio::before {
-    scale: 0;
+.group__text, .line__text { padding: 8px; }
+.group__radio { border-radius: 50%; }
+.group__checkbox, .line__checkbox { border-radius: 8px; }
+
+.group__text:hover, .line__text:hover, .group__radio:hover, .group__checkbox:hover, .line__checkbox:hover { outline-color: gray; }
+
+.group__radio::before, .group__checkbox::before, .line__checkbox::before  {
     content: "";
+    scale: 0;
+    border-radius: 50%;
+    background-color: purple;
+    transition: scale 200ms ease-in;
+}
+.group__radio::before {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: purple;
-    transition: scale 200ms ease-in;
 }
-.form__radio:checked::before {
-    scale: 1;
-    content: "";
-}
-.form__radio:focus-visible {
-    outline-offset: -2px;
-    outline: 2px solid plum;
-    border: none;
-    color: plum;
-}
-
-/* CHECKBOX */
-
-.form__checkbox {
-    appearance: none;
+.group__checkbox::before, .line__checkbox::before {
     width: 20px;
     height: 20px;
-    outline: 1px solid black;
     border-radius: 8px;
-    background-color: white;
-    border-radius: 8px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
 }
-.form__checkbox:hover {
-    outline-color: gray;
-    color: gray;
-}
-.form__checkbox::before {
-    scale: 0;
+
+.group__radio:checked::before, .group__checkbox:checked::before, .line__checkbox:checked::before {
     content: "";
-    width: 20px;
-    height: 20px;
-    background-color: purple;
-    color: white;
-    transition: scale 200ms ease-in;
-}
-.form__checkbox::before:checked {
     scale: 1;
-    content: "x";
 }
-.form__checkbox:focus-visible {
-    outline-offset: -2px;
+.group__checkbox:checked::before, .line__checkbox:checked::before { content: "✓"; }
+
+.group__text:focus-visible, .line__text:focus-visible, .group__radio:focus-visible, .group__checkbox:focus-visible, .line__checkbox:focus-visible, .button:focus-visible {
+    outline-offset: 2px;
     outline: 2px solid plum;
-    border: none;
-    color: plum;
 }
 
-/* BUTTONS */
-
-button {
-    outline-offset: 0px;
+.group__text, .line__text, .button {
     outline: 1px solid black;
     border: none;
     border-radius: 8px;
     background: white;
     padding: 8px;
 }
-.button--green:hover {
-    outline-color: greenyellow;
-    color: greenyellow;
-}
-.button--red:hover {
-    outline-color: red;
-    color: red;
-}
-button:focus-visible {
-    outline-offset: -2px;
-    outline: 2px solid plum;
-    border: none;
-    color: plum;
-}
+
+.button--agree:hover { outline-color: greenyellow; }
+.button--disagree:hover { outline-color: red; }
