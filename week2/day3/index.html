@@ -15,22 +15,22 @@
                 </legend>
 
                 <div class="group__body">
-                    <label>
+                    <label class="group__label">
                         Имя
                         <input class="group__text" type="text" name="first-name" required>
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         Фамилия
                         <input class="group__text" type="text" name="second-name" required>
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         E-mail
                         <input class="group__text" type="email" autocomplete="email" name="email" required>
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         Номер телефона
                         <input class="group__text" type="tel" name="phone-number" autocomplete="tel">
                     </label>
@@ -44,17 +44,17 @@
                 </legend>
 
                 <div class="group__body">
-                    <label>
+                    <label class="group__label">
                         Онлайн
                         <input class="group__radio" type="radio" name="class-format" value="online" required>
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         В студии
                         <input class="group__radio" type="radio" name="class-format" value="in-studio">
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         Гибрид
                         <input class="group__radio" type="radio" name="class-format" value="hybrid">
                     </label>  
@@ -69,22 +69,22 @@
                 </legend>
 
                 <div class="group__body">
-                    <label>
+                    <label class="group__label">
                         Бильярд
                         <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="billiard">
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         Гольф
                         <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="golf">
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         Теннис
                         <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="tennis">
                     </label>
 
-                    <label>
+                    <label class="group__label">
                         Пинг-понг
                         <input class="group__checkbox" type="checkbox" name="area-of-interest[]" value="ping-pong">
                     </label>
@@ -93,26 +93,26 @@
 
             <!-- block `promo`: exacly 8 symbols, letters and numbers -->
             <div class="line__body">
-                <label>
+                <label class="line__label">
                     Промокод
-                    <input class="line__text text--capitalize" type="text" name="promo" pattern="[a-z0-9]{8}" maxlength="8"
+                    <input class="line__text text--uppercase" type="text" name="promo" pattern="[a-zA-Z0-9]{8}" maxlength="8"
                     title="Только символы и цифры, всего 8 символов">
                 </label>
             </div>
 
             <!-- block `comment`: min 30 symbols (not necessary) -->
             <div class="line__body">
-                <label>
+                <label class="line__label">
                     Комментарий
-                    <textarea class="line__comment" name="comment" minlength="30"></textarea>
+                    <textarea class="line__comment" name="comment" rows="4" minlength="30"></textarea>
                 </label>
             </div>
 
             <!-- checkbox `agreement` -->
             <div class="line__body">
-                <label>
+                <label class="line__label">
                     Согласен(-на) на обработку персональных данных
-                    <input class="line__checkbox" type="checkbox" name="agreement" value="agree">
+                    <input class="line__checkbox" type="checkbox" name="agreement" value="agree" required>
                 </label>
             </div>
 

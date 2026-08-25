@@ -19,7 +19,7 @@ button, input, select, textarea {
     gap: 8px;
 }
 
-.text--capitalize {
+.text--uppercase {
     text-transform: uppercase;
 }
 
@@ -56,13 +56,20 @@ button, input, select, textarea {
     gap: 8px;
 }
 
+.group__text, .line__text, .line__comment, .button {
+    outline: 1px solid black;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    padding: 8px;
+}
+
 .group__radio, .group__checkbox, .line__checkbox {
     appearance: none;
     width: 20px;
     height: 20px;
     outline: 1px solid black;
     border: none;
-    border-radius: 50%;
     color: white;
     background-color: white;
     display: grid;
@@ -73,23 +80,22 @@ button, input, select, textarea {
 .group__radio { border-radius: 50%; }
 .group__checkbox, .line__checkbox { border-radius: 8px; }
 
-.group__text:hover, .line__text:hover, .line__comment:hover, .group__radio:hover, .group__checkbox:hover, .line__checkbox:hover { outline-color: gray; }
+@media (hover: hover) {
+    .group__label:hover, .line__label:hover { outline-color: gray; }
+}
 
 .group__radio::before, .group__checkbox::before, .line__checkbox::before  {
     content: "";
+    width: 10px;
+    height: 10px;
     scale: 0;
     border-radius: 50%;
     background-color: purple;
     transition: scale 200ms ease-in;
 }
-.group__radio::before {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
+.group__radio::before { border-radius: 50%; }
 .group__checkbox::before, .line__checkbox::before {
-    width: 20px;
-    height: 20px;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     border-radius: 8px;
 }
 
@@ -97,19 +103,13 @@ button, input, select, textarea {
     content: "";
     scale: 1;
 }
-.group__checkbox:checked::before, .line__checkbox:checked::before { content: "✓"; }
+.group__checkbox:checked::before, .line__checkbox:checked::before {
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
 
 .group__text:focus-visible, .line__text:focus-visible, .line__comment:focus-visible, .group__radio:focus-visible, .group__checkbox:focus-visible, .line__checkbox:focus-visible, .button:focus-visible {
     outline-offset: 2px;
     outline: 2px solid plum;
-}
-
-.group__text, .line__text, .line__comment, .button {
-    outline: 1px solid black;
-    border: none;
-    border-radius: 8px;
-    background: white;
-    padding: 8px;
 }
 
 .button--agree:hover { outline-color: greenyellow; }
