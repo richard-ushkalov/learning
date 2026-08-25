@@ -70,41 +70,39 @@ button, input, select, textarea {
     height: 20px;
     outline: 1px solid black;
     border: none;
-    color: white;
     background-color: white;
     display: grid;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
 .group__radio { border-radius: 50%; }
 .group__checkbox, .line__checkbox { border-radius: 8px; }
 
 @media (hover: hover) {
-    .group__label:hover, .line__label:hover { outline-color: gray; }
+    .group__label:hover .group__text, .line__label:hover .line__text, .line__label:hover .line__comment { outline-color: gray; }
 }
 
 .group__radio::before, .group__checkbox::before, .line__checkbox::before  {
     content: "";
-    width: 10px;
-    height: 10px;
     scale: 0;
-    border-radius: 50%;
     background-color: purple;
     transition: scale 200ms ease-in;
 }
-.group__radio::before { border-radius: 50%; }
+.group__radio::before {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
 .group__checkbox::before, .line__checkbox::before {
-    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    width: 15px;
+    height: 15px;
     border-radius: 8px;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
 .group__radio:checked::before, .group__checkbox:checked::before, .line__checkbox:checked::before {
     content: "";
     scale: 1;
-}
-.group__checkbox:checked::before, .line__checkbox:checked::before {
-    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
 .group__text:focus-visible, .line__text:focus-visible, .line__comment:focus-visible, .group__radio:focus-visible, .group__checkbox:focus-visible, .line__checkbox:focus-visible, .button:focus-visible {
