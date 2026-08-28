@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+}
+button, input, select, textarea { font: inherit; }
+
+/*  Text scale, 1.2
+    1 / 1.2 / 1.44 / 2.07
+    Margin scale, step 4px
+    0.25 / 0.5 / 0.75 / 1 / 1.25 | 2rem exclusively (h1)
+*/
+
+h1, h2, h3 { line-height: 1.15; }
+h1 {
+    font-size: 2.07rem;
+    margin-block: 2rem 0.5rem;
+}
+h2 {
+    font-size: 1.44rem;
+    margin-block: 0 0.75rem;
+}
+h3 {
+    font-size: 1.2rem;
+    margin-block: 0 1rem;
+}
+p {
+    font-size: 1rem;
+    margin-block: 0 1.25rem;
+}
+
+/* PRODUCT */
+
+.order {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 0px solid gray;
+    background-color: white;
+
+    transition: margin 400ms ease-in-out,
+                border 400ms ease-in-out,
+                border-radius 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
+}
+@media (hover: hover) {
+    .order:hover {
+        margin: 1rem;
+        border: 0.5px solid gray;
+        border-radius: 0.25rem;
+        box-shadow: 0px 0px 8px 0px rgb(0 0 0 / 0.1);
+    }
+}
+
+.order__status { font-weight: 100; }
+
+.order__price {
+    position: relative;
+    font-weight: 600;
+}
+.order__price::after {
+    content: "€";
+    position: absolute;
+    margin-inline-start: 1ch;
+}
+
+.order__message--error {
+    font-style: italic;
+    color: red;
+}
+
+.order--text { margin-block: 0; }
+
+
