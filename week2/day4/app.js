@@ -21,7 +21,7 @@ if (quantity > 0) {
     const totalDiscountPrice = totalPrice - discountAmount;
 
     console.log(`Цена за единицу: ${price} EUR`);
-    console.log(`Кол—во: ${quantity}x`);
+    console.log(`Кол-во: ${quantity}x`);
     console.log(`Итоговая цена: ${totalPrice} EUR`);
     console.log(`Скидка составляет ${discountAmount} EUR, итоговая цена со скидкой: ${totalDiscountPrice} EUR`);
 
