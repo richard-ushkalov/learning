@@ -9,21 +9,12 @@ if (!orderPrice) { console.log('orderPrice = null'); }
 const orderMessage = document.querySelector('.order__message');
 if (!orderMessage) { console.log('orderMessage = null'); }
 
-const price = 20;
-const freeDeliveryFrom = 50;
-const promo = '23gdsg-js'.toUpperCase();
-const deliveryStatus = 'courier';
+const PROMO_CODE = '23GDSG-JS';
 
-let discount;
-if (price > 200) {
-    discount = 0.15;
-} else if (price > 100) {
-    discount = 0.1;
-} else if (price > 50) {
-    discount = 0.05;
-} else {
-    discount = 0;
-}
+const price = 40;
+const freeDeliveryFrom = 50;
+const promo = '23gdsg-js'.toUpperCase(); /* Как метод уже рабочий для ожиданий чисел извне */
+const deliveryStatus = 'courier';
 
 let deliveryCost;
 switch (deliveryStatus) {
@@ -34,21 +25,36 @@ switch (deliveryStatus) {
         deliveryCost = 10;
         break;
     case 'pickup':
+        deliveryCost = 0;
+        break;
+
     default:
         deliveryCost = 0;
         break;
 }
-deliveryCost = promo === '23GDSG-JS' ? 0 : deliveryCost;
+if (promo === PROMO_CODE) { deliveryCost = 0; }
 
-const quantity = 3;
+const quantity = 7;
 
 if (quantity <= 0) {
-    orderStatus.style.display = "none";
-    orderPrice.style.display = "none";
-    orderMessage.textContent = "Список товаров пуст"
-}
-else {
+    orderStatus.classList.add('order__item--hidden');
+    orderPrice.classList.add('order__item--hidden');
+    orderMessage.classList.add('order__item--error');
+    orderMessage.textContent = "Список товаров пуст";
+} else {
     const totalPrice = price * quantity;
+
+    let discount;
+    if (totalPrice >= 200) {
+        discount = 0.15;
+    } else if (totalPrice >= 100) {
+        discount = 0.1;
+    } else if (totalPrice >= 50) {
+        discount = 0.05;
+    } else {
+        discount = 0;
+    }
+
     const discountAmount = totalPrice * discount;
     const totalDiscountPrice = totalPrice - discountAmount;
     const totalPriceWithDelivery = totalDiscountPrice + deliveryCost;
@@ -63,23 +69,14 @@ else {
     } 
 
     orderStatus.textContent = status;
-    orderPrice.textContent = `${totalPriceWithDelivery}`;
+    orderPrice.textContent = String(totalPriceWithDelivery);
     orderMessage.textContent = `${quantity} ${quantity === 1 ? 'товар' : 'товара'}`;
 
     console.log(`Цена за единицу: ${price} EUR`);
     console.log(`Кол-во: ${quantity} ${quantity === 1 ? 'товар' : 'товара'}`);
     console.log(`Итоговая цена: ${totalPrice} EUR`);
-    console.log(`Скидка составляет ${discountAmount}%, итоговая цена со скидкой: ${totalDiscountPrice} EUR`);
+    console.log(`Скидка составляет ${discount * 100}%, итоговая цена со скидкой: ${totalDiscountPrice} EUR`);
     console.log(`totalPrice = ${typeof totalPrice}`);
     console.log(`totalDiscountPrice = ${typeof totalDiscountPrice}`);
     console.log(`discountAmount = ${typeof discountAmount}`);
 }
-
-console.log(`price = ${typeof price}`);
-console.log(`quantity = ${typeof quantity}`);
-console.log(`discount = ${typeof discount}`);
-console.log(`freeDeliveryFrom = ${typeof freeDeliveryFrom}`);
-console.log(`deliveryCost = ${typeof deliveryCost}`);
-console.log(`totalPrice = ${typeof totalPrice}`);
-console.log(`totalDiscountPrice = ${typeof totalDiscountPrice}`);
-console.log(`discountAmount = ${typeof discountAmount}`);

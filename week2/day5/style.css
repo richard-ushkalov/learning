@@ -68,7 +68,10 @@ p {
     margin-inline-start: 1ch;
 }
 
-.order__message--error {
+.order__message { color: gray; }
+
+.order__item--hidden { display: none; }
+.order__item--error {
     font-style: italic;
     color: red;
 }
