@@ -26,19 +26,16 @@ if (quantity > 0) {
     console.log(`Скидка составляет ${discountAmount} EUR, итоговая цена со скидкой: ${totalDiscountPrice} EUR`);
 
     if (totalDiscountPrice < freeDeliveryFrom) {
-
         const totalPriceWithDelivery = totalDiscountPrice + deliveryCost;
         message = `Цена с учётом доставки: ${totalDiscountPrice} + ${deliveryCost} = ${totalPriceWithDelivery} EUR`;
     } else {
-
-        message = 'Доставка бесплатная'
+        message = 'Доставка бесплатная';
     }
 
     console.log(`totalPrice = ${typeof totalPrice}`);
     console.log(`totalDiscountPrice = ${typeof totalDiscountPrice}`);
     console.log(`discountAmount = ${typeof discountAmount}`);
 } else {
-
     message = 'Заказ пуст, добавьте товары';
 }
 console.log(message);
