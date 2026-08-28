@@ -13,7 +13,7 @@ const PROMO_CODE = '23GDSG-JS';
 
 const price = 40;
 const freeDeliveryFrom = 50;
-const promo = '23gdsg-js'.toUpperCase(); /* Как метод уже рабочий для ожиданий чисел извне */
+const promo = PROMO_CODE;
 const deliveryStatus = 'courier';
 
 let deliveryCost;
@@ -30,6 +30,7 @@ switch (deliveryStatus) {
 
     default:
         deliveryCost = 0;
+        console.log('Статус доставки неизвестен');
         break;
 }
 if (promo === PROMO_CODE) { deliveryCost = 0; }
@@ -40,7 +41,7 @@ if (quantity <= 0) {
     orderStatus.classList.add('order__item--hidden');
     orderPrice.classList.add('order__item--hidden');
     orderMessage.classList.add('order__item--error');
-    orderMessage.textContent = "Список товаров пуст";
+    orderMessage.textContent = 'Список товаров пуст';
 } else {
     const totalPrice = price * quantity;
 
@@ -60,7 +61,7 @@ if (quantity <= 0) {
     const totalPriceWithDelivery = totalDiscountPrice + deliveryCost;
 
     let status;
-    if (deliveryCost === 0) {
+    if (promo === PROMO_CODE) {
         status = 'Доставка бесплатная (промокод использован)';
     } else if (totalDiscountPrice >= freeDeliveryFrom) {
         status = 'Доставка бесплатная';
