@@ -1,17 +1,10 @@
-const balls = [
-  { number: 0,  color: "белый",     potted: true },
-  { number: 3,  color: "красный",   potted: true },
-  { number: 8,  color: "чёрный",    potted: true },
-  { number: 11, color: "бордовый",  potted: true },
-  { number: 5,  color: "оранжевый", potted: true },
-  { number: 14, color: "зелёный",   potted: true },
-  { number: 9,  color: "жёлтый",    potted: true },
-];
+const balls = [];
 
 let pottedCount = 0;
 let onTableCount = 0;
 let pottedNumberSum = 0;
-let highestOnTableNumber = balls[0].potted ? -1 : balls[0].number;
+let highestOnTableNumber = -2;
+if (balls && balls.length > 0) { highestOnTableNumber = balls[0].potted ? -1 : balls[0].number; }
 
 const layout = document.querySelector('.layout');
 const template = document.querySelector('#ball-template');
@@ -74,7 +67,9 @@ for (const ball of balls) { /* нам не нужно знать индекс, �
 console.log(`Шаров забито: ${pottedCount}`);
 console.log(`Шаров на столе: ${onTableCount}`);
 console.log(`Сумма номеров забитых шаров: ${pottedNumberSum}`);
-if (highestOnTableNumber === -1) {
+if (highestOnTableNumber === -2) {
+    console.log(`Шаров на стол не предоставили`);
+} else if (highestOnTableNumber === -1) {
     console.log(`Нет шаров на столе`);
 } else {
     console.log(`Наибольший номер шара, оставшийся на столе: ${highestOnTableNumber}`);
