@@ -14,6 +14,9 @@ const template = document.querySelector('#ball-template');
 if (!template) { console.log('template = null'); }
 
 for (const ball of balls) { /* нам не нужно знать индекс, а число циклов известно (balls.length), нужно проверять каждый шар, значит for..of */
+    if (!layout || !template) { break; }
+    if (ball.number === 0) { continue; }
+
     const node = template.content.cloneNode(true);
 
     let ballColor;
@@ -56,7 +59,7 @@ let onTableCount = 0;
 let pottedNumberSum = 0;
 
 let highestOnTableNumber = -1;
-if (!balls || balls.length === 0) { highestOnTableNumber = -2; }
+if (balls.length === 0) { highestOnTableNumber = -2; }
 
 for (const ball of balls) {
     if (ball.number === 0) { continue; }

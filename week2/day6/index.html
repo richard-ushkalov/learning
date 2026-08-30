@@ -8,19 +8,20 @@
         <script src="app.js" defer></script>
     </head>
     <body>
-        <div class="layout">
-            <template id="ball-template">
-                <div class="layout__block">
-                    <div class="layout__line">
-                        <div class="ball">
-                            <div class="ball__shape"></div>
-                            <div class="ball__accent"></div>
-                            <p class="ball__number"></p>
-                        </div>
-                        <p class="ball__status"></p>
+        <ul class="layout">
+        </ul>
+
+        <template id="ball-template">
+            <li class="layout__block">
+                <div class="layout__line">
+                    <div class="ball">
+                        <div class="ball__shape"></div>
+                        <div class="ball__accent"></div>
+                        <p class="ball__number"></p>
                     </div>
+                    <p class="ball__status"></p>
                 </div>
-            </template>
-        </div>
+            </li>
+        </template>
     </body>
 </html>

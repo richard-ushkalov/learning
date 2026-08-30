@@ -30,6 +30,11 @@ button, input, select, textarea { font: inherit; }
     }
 }
 
+.layout {
+    list-style: none;
+    padding-left: 0;
+}
+
 /* WRAPPER */
 
 .layout__block { transition: padding-block 400ms ease-in-out; }
