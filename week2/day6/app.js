@@ -1,27 +1,19 @@
-const balls = [];
-
-let pottedCount = 0;
-let onTableCount = 0;
-let pottedNumberSum = 0;
-let highestOnTableNumber = -2;
-if (balls && balls.length > 0) { highestOnTableNumber = balls[0].potted ? -1 : balls[0].number; }
+const balls = [
+  { number: 0,  color: "белый",     potted: false },
+  { number: 3,  color: "красный",   potted: true  },
+  { number: 8,  color: "чёрный",    potted: false },
+  { number: 11, color: "бордовый",  potted: true  },
+  { number: 5,  color: "оранжевый", potted: false },
+  { number: 14, color: "зелёный",   potted: true  },
+  { number: 9,  color: "жёлтый",    potted: false },
+];
 
 const layout = document.querySelector('.layout');
+if (!layout) { console.log('layout = null'); }
 const template = document.querySelector('#ball-template');
+if (!template) { console.log('template = null'); }
 
 for (const ball of balls) { /* нам не нужно знать индекс, а число циклов известно (balls.length), нужно проверять каждый шар, значит for..of */
-    if (ball.number == 0) { continue; }
-
-    if (ball.potted) {
-        pottedCount++;
-        pottedNumberSum += ball.number;
-    } else {
-        onTableCount++;
-        if (ball.number > highestOnTableNumber) {
-            highestOnTableNumber = ball.number;
-        }
-    }
-
     const node = template.content.cloneNode(true);
 
     let ballColor;
@@ -29,7 +21,7 @@ for (const ball of balls) { /* нам не нужно знать индекс, �
         case 'белый':
             ballColor = '#dddddd';
             break;
-        case 'черный':
+        case 'чёрный':
             ballColor = '#000000';
             break;
         case 'бордовый':
@@ -44,7 +36,7 @@ for (const ball of balls) { /* нам не нужно знать индекс, �
         case 'жёлтый':
             ballColor = '#f5f530';
             break;
-        case 'зеленый':
+        case 'зелёный':
             ballColor = '#369621';
             break;
         default:
@@ -57,9 +49,32 @@ for (const ball of balls) { /* нам не нужно знать индекс, �
     node.querySelector('.ball__status').textContent = ball.potted ? 'забит' : 'на столе';
 
     layout.append(node);
+}
 
-    if (ball.number > 8) {
-        console.log(`Найден шар ${ball.number}, цвет — ${ball.color}`);
+let pottedCount = 0;
+let onTableCount = 0;
+let pottedNumberSum = 0;
+
+let highestOnTableNumber = -1;
+if (!balls || balls.length === 0) { highestOnTableNumber = -2; }
+
+for (const ball of balls) {
+    if (ball.number === 0) { continue; }
+
+    if (ball.potted) {
+        pottedCount++;
+        pottedNumberSum += ball.number;
+    } else {
+        onTableCount++;
+        if (ball.number > highestOnTableNumber) {
+            highestOnTableNumber = ball.number;
+        }
+    }
+}
+
+for (const ball of balls) {
+    if (!ball.potted && ball.number > 8) {
+        console.log(`Найден шар на столе ${ball.number}, цвет — ${ball.color}`);
         break;
     }
 }
@@ -75,13 +90,13 @@ if (highestOnTableNumber === -2) {
     console.log(`Наибольший номер шара, оставшийся на столе: ${highestOnTableNumber}`);
 }
 
-const GRAVITY = 0.94;
-const ball = { speed: 12.5 };
+const FRICTION = 0.94;
+const cueBall = { speed: 12.5 };
 
 let steps = 0;
 
-while (ball.speed > 0.05) { /* мы не знаем кол-во циклов, переменные определены заранее — while */
-    ball.speed *= GRAVITY;
+while (cueBall.speed > 0.05) { /* мы не знаем кол-во циклов — while */
+    cueBall.speed *= FRICTION;
 
     steps++;
 }
