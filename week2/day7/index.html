@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>День 14 — Функции</title>
+
+        <link rel="stylesheet" href="style.css">
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <ul class="layout">
+        </ul>
+
+        <template id="player-template">
+            <li class="layout__block">
+                <div class="layout__line">
+                    <p class="player__name"></p>
+                    <p class="player__potted-count"></p>
+                    <p class="player__fouls-count"></p>
+                    <p class="player__status"></p>
+                </div>
+            </li>
+        </template>
+
+        <template id ="winner-template">
+            <li class="layout__block">
+                <div class="layout__line">
+                    <p class="winner__name"></p>
+                </div>
+            </li>
+        </template>
+
+        <template id ="average-potted-template">
+            <li class="layout__block">
+                <div class="layout__line">
+                    <p class="average-potted__count"></p>
+                </div>
+            </li>
+        </template>
+    </body>
+</html>
