@@ -24,11 +24,8 @@ const isDisqualified = player => player.fouls >= 4;
 const isWinner = player => player.potted === 8 && !isDisqualified(player);
 
 const getPlayerStatus = player => {
-  if (isDisqualified(player)) {
-    return 'дисквалификация';
-  } else if (player.potted === 8) {
-    return 'победа';
-  }
+  if (isDisqualified(player)) { return 'дисквалификация'; }
+  if (isWinner(player)) { return 'победа'; }
 
   return 'в игре';
 };
