@@ -54,46 +54,48 @@ const calcAveragePotted = players => {
   return Math.round(potted / (notDisqualified * 8) * 100);
 };
 
-const renderPage = node => {
+const renderPlayers = (layout, players) => {
+  for (const player of players) {
+    const node = getTemplate('player-template');
+
+    if (!node) { break; }
+
+    showText(node, 'player__name', player.name);
+    showText(node, 'player__potted-count', player.potted);
+    showText(node, 'player__fouls-count', player.fouls);
+    showText(node, 'player__status', getPlayerStatus(player));
+    layout.append(node);
+  }
+};
+
+const renderWinner = (layout, players) => {
+  const node = getTemplate('winner-template');
+
+  if (!node) { return; }
+
+  const winnerName = getWinnerName(players);
+
+  showText(node, 'winner__text', winnerName ? `${winnerName} победитель` : 'Победитель не определён');
+  layout.append(node);
+};
+
+const renderAverage = (layout, players) => {
+  const node = getTemplate('average-potted-template');
+
+  if (!node) { return; }
+
+  showText(node, 'average-potted__count', `${calcAveragePotted(players)}%`);
+  layout.append(node);
+};
+
+const renderPage = players => {
   const layout = document.querySelector('.layout');
 
   if (!layout) { return; }
 
-  layout.append(node);
+  renderPlayers(layout, players);
+  renderWinner(layout, players);
+  renderAverage(layout, players);
 }
 
-// Show players
-
-for (const player of players) {
-  const node = getTemplate('player-template');
-  if (!node) { break; }
-
-  showText(node, 'player__name', player.name);
-  showText(node, 'player__potted-count', player.potted);
-  showText(node, 'player__fouls-count', player.fouls);
-
-  showText(node, 'player__status', getPlayerStatus(player));
-
-  renderPage(node);
-}
-
-// Winner name //
-
-let node = getTemplate('winner-template');
-  
-if (node) {
-  const winnerText = getWinnerName(players) ? `${getWinnerName(players)} победитель` : 'Победитель не определён';
-  showText(node, 'winner__text', winnerText);
-
-  renderPage(node);
-}
-
-// Average potted //
-
-node = getTemplate('average-potted-template');
-
-if (node) {
-  showText(node, 'average-potted__count', `${calcAveragePotted(players)}%`);
-
-  renderPage(node);
-}
+renderPage(players);
