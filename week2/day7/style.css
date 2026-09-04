@@ -63,7 +63,7 @@ button, select, input, textarea { font: inherit; }
     }
 }
 
-/* BALL */
+/* PLAYER */
 
 .layout__line {
     display: flex;

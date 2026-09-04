@@ -54,13 +54,19 @@ const calcAveragePotted = players => {
   return Math.round(potted / (notDisqualified * 8) * 100);
 };
 
-const layout = document.querySelector('.layout');
+const renderPage = node => {
+  const layout = document.querySelector('.layout');
+
+  if (!layout) { return; }
+
+  layout.append(node);
+}
 
 // Show players
 
 for (const player of players) {
-  if (!getTemplate('player-template')) { break; }
   const node = getTemplate('player-template');
+  if (!node) { break; }
 
   showText(node, 'player__name', player.name);
   showText(node, 'player__potted-count', player.potted);
@@ -68,32 +74,26 @@ for (const player of players) {
 
   showText(node, 'player__status', getPlayerStatus(player));
 
-  if (!layout) { break; }
-  layout.appendChild(node);
+  renderPage(node);
 }
 
 // Winner name //
 
-if (getTemplate('player-template')) {
-  const node = getTemplate('winner-template');
+let node = getTemplate('winner-template');
   
-  let winnerText;
-  if (getWinnerName(players)) {
-    winnerText = `${getWinnerName(players)} победитель`;
-  } else {
-    winnerText = 'Победитель не определён';
-  }
+if (node) {
+  const winnerText = getWinnerName(players) ? `${getWinnerName(players)} победитель` : 'Победитель не определён';
   showText(node, 'winner__text', winnerText);
 
-  if (layout) { layout.appendChild(node); }
+  renderPage(node);
 }
 
 // Average potted //
 
-if (getTemplate('average-potted-template')) {
-  const node = getTemplate('average-potted-template');
+node = getTemplate('average-potted-template');
 
+if (node) {
   showText(node, 'average-potted__count', `${calcAveragePotted(players)}%`);
 
-  if (layout) { layout.appendChild(node); }
+  renderPage(node);
 }
