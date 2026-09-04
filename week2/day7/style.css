@@ -72,5 +72,5 @@ button, select, input, textarea { font: inherit; }
     align-items: center;
 }
 
-.ball__status { position: relative; }
-.ball__status::before { content: "status"; }
+.player__status { position: relative; }
+.player__status::before { content: "status"; }

@@ -1,6 +1,6 @@
 const players = [
-  { name: 'Аня', potted: 8, fouls: 1 },
-  { name: 'Борис', potted: 8, fouls: 3 },
+  { name: 'Аня', potted: 6, fouls: 1 },
+  { name: 'Борис', potted: 8, fouls: 4 },
   { name: 'Вика', potted: 3, fouls: 0 }
 ];
 
@@ -10,53 +10,57 @@ const getTemplate = templateName => {
   if (!template) { return null; }
   
   return template.content.cloneNode(true);
-}
+};
 
 const showText = (origin, elementName, text) => {
-  origin.querySelector(`.${elementName}`).textContent = `${text}`;
-}
+  const element = origin.querySelector(`.${elementName}`);
+
+  if (!element) { return; }
+
+  element.textContent = text;
+};
 
 const isDisqualified = player => player.fouls >= 4;
-const isWinner = player => player.potted == 8 && !isDisqualified(player);
+const isWinner = player => player.potted === 8 && !isDisqualified(player);
 
 const getPlayerStatus = player => {
   if (isDisqualified(player)) {
     return 'дисквалификация';
-  } else if (player.potted == 8) {
+  } else if (player.potted === 8) {
     return 'победа';
   }
 
   return 'в игре';
-}
+};
 
-const getWinnerName = () => {
+const getWinnerName = players => {
   for (const player of players) {
-    if (!isWinner(player)) { continue; }
-
-    return `${player.name} победитель`;
+    if (isWinner(player)) { return player.name; }
   }
 
   return null;
-}
+};
 
-const countAveragePotted = players => {
+const calcAveragePotted = players => {
   let potted = 0;
+  let notDisqualified = 0;
   for (const player of players) {
     if (isDisqualified(player)) { continue; }
 
     potted += player.potted;
+    notDisqualified++;
   }
 
-  return Math.round(potted / (players.length * 8) * 100);
-}
+  return Math.round(potted / (notDisqualified * 8) * 100);
+};
 
 const layout = document.querySelector('.layout');
-let node;
 
 // Show players
 
 for (const player of players) {
-  node = getTemplate('player-template');
+  if (!getTemplate('player-template')) { break; }
+  const node = getTemplate('player-template');
 
   showText(node, 'player__name', player.name);
   showText(node, 'player__potted-count', player.potted);
@@ -64,18 +68,32 @@ for (const player of players) {
 
   showText(node, 'player__status', getPlayerStatus(player));
 
+  if (!layout) { break; }
   layout.appendChild(node);
 }
 
 // Winner name //
 
-node = getTemplate('winner-template');
-showText(node, 'winner__name', getWinnerName() ?? 'Победитель не определён');
-layout.appendChild(node);
+if (getTemplate('player-template')) {
+  const node = getTemplate('winner-template');
+  
+  let winnerText;
+  if (getWinnerName(players)) {
+    winnerText = `${getWinnerName(players)} победитель`;
+  } else {
+    winnerText = 'Победитель не определён';
+  }
+  showText(node, 'winner__text', winnerText);
 
+  if (layout) { layout.appendChild(node); }
+}
 
 // Average potted //
 
-node = getTemplate('average-potted-template');
-showText(node, 'average-potted__count', `${countAveragePotted(players)}%`);
-layout.appendChild(node);
+if (getTemplate('average-potted-template')) {
+  const node = getTemplate('average-potted-template');
+
+  showText(node, 'average-potted__count', `${calcAveragePotted(players)}%`);
+
+  if (layout) { layout.appendChild(node); }
+}
