@@ -96,6 +96,6 @@ const renderPage = players => {
   renderPlayers(layout, players);
   renderWinner(layout, players);
   renderAverage(layout, players);
-}
+};
 
 renderPage(players);
