@@ -1,0 +1,18 @@
+.button {
+    padding: 1rem;
+    color: white;
+    background-color: blue;
+    transition:
+        background-color 200ms ease-out;
+    opacity: 0;
+}
+
+.button:hover {
+    background-color: red;
+    animation: breathe 1.2s ease-in-out forwards;
+}
+
+@keyframes breathe {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

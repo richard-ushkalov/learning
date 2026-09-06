@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <title>day3</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            .boxes {
+                position: relative;
+                padding: 20px;
+                width: 300px;
+                height: 3000px;
+                border: 1px solid black;
+            }
+            .box {
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                border: 1px solid blue;
+            }
+
+            .box-a {
+
+                top: 10px;
+                left: 25px;
+            }
+            .box-b {
+                top: 30px;
+                left: 50px;
+            }
+            .box-c {
+                width: 25px;
+                height: 25px;
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="boxes">
+            <div class="box box-a">A</div>
+            <div class="box box-b">B</div>
+            <div class="box-c">C</div>
+        </div>
+    </body>
+</html>

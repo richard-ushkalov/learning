@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sandbox</title>
+        <link rel="stylesheet" href="style.css"
+    </head>
+    <body>
+        <form action="/sms-code" method="post">
+            <label for="sms">Введите четырёхзначный код из SMS</label>
+            <input class="error" inputmode="numeric" type="text" id="sms" name="sms" autocomplete="one-time-code" pattern="[0-9]{4}" placeholder="1234" maxlength="6" required>
+            <button type="submit">Отправить</button>
+        </form>
+        <!-- <div class="field">
+            <label class="field__label" for="email">Почта</label>
+            <input class="field__input" type="email" id="email" name="email" autocomplete="email" required>
+            <button class="probe" type="button">ОТПРАВИТЬ</button>
+        </div> -->
+        <form action="/pass" method="post">
+            <!-- <label for="pass">Новый пароль</label>
+            <input name="pass" id="pass" type="password" autocomplete="new-password" minlength="8" required
+            title="Пароль длинной от 8 символов, только строчные латинские буквы, цифры и знак подчеркивания"/> -->
+
+            <label for="note">Комментарий</label>
+            <textarea class="comm" id="note" name="note" minlength="20" n></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+
+        <label for="pay-card">Картой</label>
+<input type="radio" id="pay-card" name="payment" value="card" checked>
+
+<label for="pay-cash">Наличными</label>
+<input type="radio" id="pay-cash" name="payment" value="cash">
+
+<label for="pay-transfer">Переводом</label>
+<input type="radio" id="pay-transfer" name="payment" value="transfer">
+
+<label for="opt-mail">Уведомления на почту</label>
+<input type="checkbox" id="opt-mail" name="notify_mail" value="1">
+
+<label for="opt-sms">Уведомления по SMS</label>
+<input type="checkbox" id="opt-sms" name="notify_sms" value="1">
+
+
+
+<label for="ex-cheese">Без сыра</label>
+<input type="checkbox" id="ex-cheese" name="extras[]" value="cheese">
+
+<label for="ex-onion">Без лука</label>
+<input type="checkbox" id="ex-onion" name="extras[]" value="onion">
+
+
+<fieldset class="group">
+  <legend class="group__legend">Способ оплаты</legend>
+
+  <label class="choice">
+    <input type="radio" name="payment" value="card">
+    Картой
+  </label>
+
+  <label class="choice">
+    <input class="choice__control" type="radio" name="payment" value="cash">
+    Наличными
+  </label>
+
+  <label class="choise">
+    <input type="radio" name="payment" value="transfer">
+    Переводом
+  </label>
+</fieldset>
+
+
+<fieldset>
+
+    <legend>Размер</legend>
+
+
+  <label><input type="radio" name="size" value="s"> S</label>
+  <label><input type="radio" name="size"> M</label>
+  <label><input type="radio" name="sizes" value="l"> L</label>
+</fieldset>
+
+        <form action="" method="get">
+        <fieldset class="group">
+            <legend>Способ доставки</legend>
+            
+            <label class="choise">
+                <input type="radio" name="shipping" value="courier" required>
+                Курьер
+            </label>
+            <label class="choise">
+                <input type="radio" name="shipping" value="pickup"> 
+                Самовывоз
+            </label>
+            <label class="choise">
+                <input type="radio" name="shipping" value="mail"> 
+                Почта
+            </label>
+        </fieldset>
+        <button type="submit">Подтвердить</button>
+        </form>
+    </body>
+</html>

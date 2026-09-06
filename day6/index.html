@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <title>panel-page</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+            }
+            body {
+                height: 100svh;
+                display: flex;
+                flex-direction: column;
+                font-family: Georgia, 'Times New Roman', serif;
+                line-height: 1.5;
+            }
+            @media (max-width: 720px) {
+                body {
+                    height: auto;
+                    min-height: 100svh;
+                }
+            }
+            button, input, select, textarea { font: inherit; }
+
+            /*  Шкала размера шрифтов, коэффициент 1.25
+                0.8         / 1 / 1.25 / 1.56 / 1.95 rem
+                card__meta  / p / h3   / h2   / h1
+                Шкала отступов, шаг 4 px
+                0.5 / 0.75 / 1 / 1.25 | 2 rem (исключение для h1)
+            */
+
+            h1, h2, h3 { line-height: 1.15; }
+            h1 {
+                font-size: 1.95rem;
+                margin-block: 2rem 0.5rem;
+            }
+            h2 {
+                font-size: 1.56rem;
+                margin-block: 0 0.75rem;
+            }
+            h3 {
+                font-size: 1.25rem;
+                margin-block: 0 1rem;
+            }
+            p {
+                font-size: 1rem;
+                margin-block: 0 1.25rem;
+            }
+            a { color: inherit; }
+
+            .grid {
+                display: grid;
+                flex: 1;
+                min-height: 0;
+                grid-template-columns: 240px minmax(0, 1fr);
+                grid-template-rows: minmax(0, 1fr) auto;
+                grid-template-areas: 
+                    "sidebar main"
+                    "footer footer";
+            }
+            @media (max-width: 720px) {
+                .grid {
+                    min-height: auto;
+                    grid-template-columns: minmax(0, 1fr);
+                    grid-template-rows: auto 1fr auto;
+                    grid-template-areas:
+                        "sidebar"
+                        "main"
+                        "footer";
+                }
+            }
+
+            .header, .sidebar, .main, .footer {
+                border: 1px solid black;
+                background-color: white;
+            }
+            .header {
+                display: flex;
+                height: 64px;
+                align-items: center;
+                gap: 16px;
+                padding: 1rem;
+            }
+            @media (max-width: 720px) {
+                .header {
+                    position: sticky;
+                    top: 0;
+                }
+            }
+            .sidebar {
+                grid-area: sidebar;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                padding: 1rem;
+            }
+            .main {
+                grid-area: main;
+                overflow-y: auto;
+                padding: 1rem;
+            }
+            @media (max-width: 720px) {
+                .main {
+                    overflow-y: visible;
+                }
+            }
+            .footer {
+                grid-area: footer;
+            }
+
+            .header__search {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .sidebar a, .card__meta, .footer__link { text-decoration: none; }
+
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+                grid-auto-rows: minmax(200px, auto);
+                gap: 16px;
+            }
+            .card {
+                overflow-wrap: anywhere;
+                background-color: white;
+                padding: 1em;
+                border: 1px solid black;
+            }
+            .card--featured {
+                grid-column: span 2;
+            }
+            @media (max-width: 720px) {
+                .card--featured {
+                    grid-column: auto;
+                }
+            }
+            .card__meta {
+                font-size: 0.8rem;
+            }
+
+            .footer__link {
+                display: block;
+                text-align: center;
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <span class="header__title">vibe—n</span>
+            <input class="header__search" type="search" placeholder="Поиск исполнителя/альбома/трека" aria-label="Поиск по каталогу" /> 
+        </header>
+        <div class="grid">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="#artists">Artists</a></li>
+                    <li><a href="#albums">Albums</a></li>
+                    <li><a href="#tracks">Tracks</a></li>
+                </ul>
+            </nav>
+            <main class="main">
+                <h1>Music Info</h1>
+                <h2 id="albums">Albums</h2>
+                <div class="gallery">
+                    <article class="card">
+                        <h3>Trilogy</h3>
+                        <p class="card__meta">The Weeknd · 2012</p>
+                        <p class="card__note">Trilogy — первый альбом-компиляция канадского певца The Weeknd, выпущенный лейблом Republic 13 ноября 2012 года. Он состоит из ремастерингованных версий микстейпов House of Balloons, Thursday и Echoes of Silence за 2011-й, а также из трёх ранее не опубликованных песен.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Ison</h3>
+                        <p class="card__meta">Sevdaliza · 2017</p>
+                        <p class="card__note">ISON — дебютный студийный альбом иранско-голландской певицы Севдализы. Он был выпущен 26 апреля 2017 года на лейбле Twisted Elegance.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Blonde</h3>
+                        <p class="card__meta">Frank Ocean · 2016</p>
+                        <p class="card__note">Blonde — второй студийный альбом американского музыканта Фрэнка Оушена, вышедший 20 августа 2016 года эксклюзивно через интернет-магазины iTunes Store и Apple Music.</p>
+                    </article>
+                    <article class="card">
+                        <h3>EUSEXUA Afterglow</h3>
+                        <p class="card__meta">FKA twigs · 2025</p>
+                        <p class="card__note">«Eusexua Afterglow» — четвёртый студийный альбом английской певицы FKA Twigs. Выпущенный 14 ноября 2025 года на лейблах Young и Atlantic Records, альбом породил четыре сингла: «Cheap Hotel», «Predictable Girl», «Hard» и «Love Crimes».</p>
+                    </article>
+                    <article class="card">
+                        <h3>Take Me Apart</h3>
+                        <p class="card__meta">Kelela · 2017</p>
+                        <p class="card__note">Take Me Apart — дебютный студийный альбом американской певицы и автора песен Kelela, вышедший 6 октября 2017 года на лейбле Warp Records. Сочетая электронную музыку и R&B, альбом был отмечен своим футуристическим звучанием и включением различных музыкальных стилей.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Through The Wall</h3>
+                        <p class="card__meta">Rochelle Jordan · 2025</p>
+                        <p class="card__note">Through the Wall — третий студийный альбом британско-канадской певицы Рошель Джордан. Он был выпущен 26 сентября 2025 года на лейбле Empire, а в поддержку альбома были выпущены синглы "Crave", "TTW", "Doing It Too" и "Sweet Sensation".</p>
+                    </article>
+                    <article class="card">
+                        <h3>Play With The Changes</h3>
+                        <p class="card__meta">Rochelle Jordan · 2021</p>
+                        <p class="card__note">«Play with the Changes» — второй студийный альбом британо-канадской певицы Рошель Джордан. Он вышел 30 апреля 2021 года на лейбле Young Art Records и стал первым релизом певицы за более чем шесть лет с момента её дебюта в 2014 году с альбомом «1021».</p>
+                    </article>
+                    <article class="card">
+                        <a href="https://open.spotify.com/playlist/4wQ7JZDnvtJr1mHlocpirD">
+                            https://open.spotify.com/playlist/4wQ7JZDnvtJr1mHlocpirD
+                        </a>
+                    </article>
+                    <article class="card card--featured">
+                        <h3>Ology</h3>
+                        <p class="card__meta">Gallant · 2016</p>
+                        <p class="card__note">Ology — дебютный студийный альбом американской R&B-исполнительницы Gallant. Он был выпущен 6 апреля 2016 года на лейблах Mind of a Genius Records и Warner Bros. Records. Альбом был поддержан синглами "Weight in Gold" и "Skipping Stones" с участием Джене Айко.</p>
+                    </article>
+                </div>
+            </main>
+            <footer class="footer">
+                <a class="footer__link" href="https://open.spotify.com/artist/4etuCZVdP8yiNPn4xf0ie5">Feel my vibe please: Julio Iglesias — Oh la la amour</a>
+            </footer>
+        </div>
+    </body>
+</html>

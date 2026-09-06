@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Моя первая страница</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .row {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 64px;
+                height: 250px;
+                border: 2px solid red;
+                gap: 0px 0px; /* gap: row column */
+                align-content: flex-start;
+            }
+            .box {
+                width: 30px;
+                height: 30px;
+
+                border: 2px solid black;
+            }
+            p {
+                border: 2px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="box">A</div>
+            <div class="box">B</div>
+            <div class="box">C</div>
+            <div class="box">D</div>
+            <div class="box">E</div>
+            <div class="box">F</div>
+            <div class="box">G</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <title>homework3</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            .header {
+                position: sticky;
+                top: 0px;
+                border: 1px solid black;
+                background-color: white;
+                height: 60px;
+                z-index: 10;
+                text-align: center;
+            }
+
+            .cards {
+                display: flex;
+                flex-direction: column;
+                padding-top: 10px;
+                gap: 10px;
+                align-items: center;
+            }
+            .card {
+                position: relative;
+                background-color: white;
+                width: 300px;
+                height: 300px;
+                border: 1px solid gray;
+            }
+            .sale {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                padding: 4px 8px;
+                background-color: red;
+            }
+
+            .button-up {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                z-index: 1;
+            }
+
+            .modal {
+                position: fixed;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                inset: 0;
+                z-index: 100;
+                background-color: rgba(0, 0, 0, 0.25);
+            }
+            .dialog {
+                background-color: white;
+                padding: 25px;
+                text-align: center;
+            }
+            .answers {
+                display: flex;
+                gap: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Header</h1>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <span class="sale">SALE</span>
+            </div>
+            <div class="card">
+                <span class="sale">SALE</span>
+            </div>
+            <div class="card">
+                <span class="sale">SALE</span>
+            </div>
+            <div class="card">
+                <span class="sale">SALE</span>
+            </div>
+            <div class="card">
+                <span class="sale">SALE</span>
+            </div>
+            <div class="card">
+                <span class="sale">SALE</span>
+            </div>
+        </div>
+
+        <button class="button-up">Наверх</button>
+
+        <div class="modal">
+            <div class="dialog">
+                <h2>Мы используем cookies</h2>
+                <div class="answers">
+                    <button>Разрешить</button>
+                    <button>Только необходимые</button>
+                    <button>Запретить</button>
+                </div> 
+            </div>
+        </div>
+    </body>
+</html>

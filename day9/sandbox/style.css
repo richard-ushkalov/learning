@@ -1,0 +1,20 @@
+::selection {
+  background-color: black;
+  color: white;
+  font-size: 1.2rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: black;
+  opacity: 1;
+}
+
+input[type="file"]::file-selector-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+  background: black;
+  cursor: pointer;
+  color: white;
+}
