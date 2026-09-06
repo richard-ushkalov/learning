@@ -30,13 +30,24 @@ const getPlayerStatus = player => {
   return 'в игре';
 };
 
-const getWinnerName = players => players.find(player => isWinner(player))?.name ?? null;
+const getWinnerName = players => players.find(isWinner)?.name ?? null;
 
 const calcAveragePotted = players => {
   const active = players.filter(player => !isDisqualified(player));
+  if (active.length === 0) { return 0; }
+
   const potted = active.reduce((sum, player) => sum + player.potted, 0);
 
   return Math.round(potted / (active.length * 8) * 100);
+};
+
+const calcAverageFouls = players => {
+  const active = players.filter(player => !isDisqualified(player));
+  if (active.length === 0) { return 0; }
+
+  const fouls = active.reduce((sum, player) => sum + player.fouls, 0);
+
+  return Math.round(fouls / active.length * 10) / 10;
 };
 
 const getTopThreeNames = players => {
@@ -44,34 +55,27 @@ const getTopThreeNames = players => {
     .filter(player => !isDisqualified(player))
     .sort((a, b) => b.potted - a.potted)
     .slice(0, 3)
-    .map(player => ' ' + player.name, ',')
-    .join();
-};
-
-const calcAverageFouls = players => {
-  const active = players.filter(player => !isDisqualified(player));
-  const fouls = active.reduce((sum, player) => sum + player.fouls, 0);
-
-  return Math.round(fouls / (players.length * 8) * 100);
+    .map(player => player.name,)
+    .join(', ');
 };
 
 const renderPlayers = (layout, players) => {
+  if (!getTemplate('player-template')) { return; }
+
   players.forEach(player => {
     const node = getTemplate('player-template');
-
-    if (!node) { return; }
 
     showText(node, 'player__name', player.name);
     showText(node, 'player__potted-count', player.potted);
     showText(node, 'player__fouls-count', player.fouls);
     showText(node, 'player__status', getPlayerStatus(player));
+
     layout.append(node);
-  })
+  });
 };
 
 const renderWinner = (layout, players) => {
   const node = getTemplate('text-template');
-
   if (!node) { return; }
 
   const winnerName = getWinnerName(players);
@@ -82,25 +86,22 @@ const renderWinner = (layout, players) => {
 
 const renderAveragePotted = (layout, players) => {
   const node = getTemplate('text-template');
-
   if (!node) { return; }
 
-  showText(node, 'text__line', `${calcAveragePotted(players)}%`);
+  showText(node, 'text__line', `Средний процент: ${calcAveragePotted(players)}%`);
   layout.append(node);
 };
 
 const renderAverageFouls = (layout, players) => {
   const node = getTemplate('text-template');
-
   if (!node) { return; }
 
-  showText(node, 'text__line', `Средние фолы: ${calcAverageFouls(players)}%`);
+  showText(node, 'text__line', `Средние фолы: ${calcAverageFouls(players)}`);
   layout.append(node);
 };
 
 const renderTopThree = (layout, players) => {
   const node = getTemplate('text-template');
-  
   if (!node) { return; }
 
   showText(node, 'text__line', `Лучшие: ${getTopThreeNames(players)}`);
@@ -109,7 +110,6 @@ const renderTopThree = (layout, players) => {
 
 const renderPage = players => {
   const layout = document.querySelector('.layout');
-
   if (!layout) { return; }
 
   renderPlayers(layout, players);
