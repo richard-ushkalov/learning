@@ -38,11 +38,11 @@ a {
     color: inherit;
 }
 
-.learning-week {
+.learning-days {
     display: flex;
     flex-direction: column;
 }
-.learning-week__day {
+.learning-days__day {
     font-size: 1rem;
     margin-block: 0 1.5rem;
 }
