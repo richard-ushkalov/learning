@@ -55,7 +55,7 @@ const getTopThreeNames = players => {
     .filter(player => !isDisqualified(player))
     .sort((a, b) => b.potted - a.potted)
     .slice(0, 3)
-    .map(player => player.name,)
+    .map(player => player.name)
     .join(', ');
 };
 
