@@ -43,20 +43,15 @@ const block = {
 
   // getContent: function() { return this.content[this.content.length - 1]; },
 
-  getContent: function() {
-    if (!this.addContent()) { return; }
-    return this.content[this.content.length - 1];
-  },
-
-  setText: function(text) {
-    if (!this.createContent()) { return; }
-    this.content[this.content.length - 1].textContent = text;
-  },
-  setTextByIndex: function(text, index) {
-    if (!this.createContent()) { return; }
-    if (!this.content[index]) { return; }
-    this.createContent()[index].textContent = text;
-  },
+  // setText: function(text) {
+  //   if (!this.createContent()) { return; }
+  //   this.content[this.content.length - 1].textContent = text;
+  // },
+  // setTextByIndex: function(text, index) {
+  //   if (!this.createContent()) { return; }
+  //   if (!this.content[index]) { return; }
+  //   this.createContent()[index].textContent = text;
+  // },
 
   templateBlock: document.querySelector('#template-block'),
   templateContent: document.querySelector('#template-content'),
