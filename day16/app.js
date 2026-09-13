@@ -133,11 +133,13 @@ const renderLeader = leader => {
 const renderPage = players => {
   if (!Array.isArray(players) || players.length === 0) { return; }
 
-  const active = getActiveSortedPlayers(players);
+  const active = players.filter(player => player.isActive);
   const activeWithScore = getPlayersWithScore(active);
+  const activeSorted = getActiveSortedPlayers(players);
+  const activeSortedWithScore = getPlayersWithScore(activeSorted);
 
-  renderPlayers(activeWithScore);
-  renderTeams(getPlayersByTeams(active));
+  renderPlayers(activeSortedWithScore);
+  renderTeams(getPlayersByTeams(activeSorted));
   renderTotal(players);
   if (activeWithScore[0]) { renderLeader(activeWithScore[0]); }
 };
