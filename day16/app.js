@@ -12,16 +12,14 @@ const block = {
 
     const template = this.templateBlock.content.cloneNode(true);
     this.block = template.querySelector('.block');
-    if (!this.block) { return; }
     const layout = document.querySelector('.layout');
-    if (!layout) { return; }
     layout.append(this.block);
 
     return this.block;
   },
   createContent: function() {
-    if (!this.createBlock()) { return; };
     if (this.content) { return this.content; }
+    this.createBlock();
 
     const template = this.templateContent.content.cloneNode(true);
     this.content = [];
@@ -32,26 +30,18 @@ const block = {
   },
 
   addContent: function() {
-    if (!this.content) {
-      if (!this.createContent()) { return; }
-
-      return this.content[this.content.length - 1];
-    }
+    this.createContent();
 
     const template = this.templateContent.content.cloneNode(true);
     this.content.push(template.querySelector('.line__content'));
     const line = this.block.querySelector('.block__line');
-    if (!line) { return; }
     line.append(this.content[this.content.length - 1]);
 
     return this.content[this.content.length - 1];
   },
-  addContentWithText: function(text) {
-    const newContent = this.addContent();
-    if (!newContent) { return; }
+  addContentWithText: function(text) { this.addContent().textContent = text; },
 
-    newContent.textContent = text;
-  },
+  // getContent: function() { return this.content[this.content.length - 1]; },
 
   getContent: function() {
     if (!this.addContent()) { return; }
