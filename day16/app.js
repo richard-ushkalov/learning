@@ -17,29 +17,19 @@ const block = {
 
     return this.block;
   },
-  createContent: function() {
-    if (this.content) { return this.content; }
+
+  addContent: function() {
     this.createBlock();
 
     const template = this.templateContent.content.cloneNode(true);
-    this.content = [];
-    this.content.push(template.querySelector('.line__content'));
-    this.block.querySelector('.block__line').append(this.content[this.content.length - 1]);
-
-    return this.content;
-  },
-
-  addContent: function() {
-    this.createContent();
-
-    const template = this.templateContent.content.cloneNode(true);
+    this.content = this.content ?? [];
     this.content.push(template.querySelector('.line__content'));
     const line = this.block.querySelector('.block__line');
     line.append(this.content[this.content.length - 1]);
 
-    return this.content[this.content.length - 1];
+    return this.content;
   },
-  addContentWithText: function(text) { this.addContent().textContent = text; },
+  addContentWithText: function(text) { this.addContent()[this.content.length - 1].textContent = text; },
 
   // getContent: function() { return this.content[this.content.length - 1]; },
 
