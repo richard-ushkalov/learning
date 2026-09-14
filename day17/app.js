@@ -6,9 +6,9 @@ const players = [
   { id: 'p5', name: 'Дина', team: 'зелёные', potted: 0, fouls: 4, isActive: true },
 ];
 
-const layout = document.querySelector('.layout');
-const fragmentBlock = document.querySelector('#template-block');
-const fragmentContent = document.querySelector('#template-content');
+const layout = document.querySelector('.layout'); // 1 Раз
+const fragmentBlock = document.querySelector('#template-block'); // 1 Раз
+const fragmentContent = document.querySelector('#template-content'); // 1 Раз
 
 const createBlock = () => {
   const initBlock = () => {
@@ -21,7 +21,7 @@ const createBlock = () => {
   };
 
   const block = initBlock();
-  const blockLine = block.querySelector('.block__line');
+  const blockLine = block.querySelector('.block__line'); // Кол-во вызовов createBlock() (9 раз)
 
   const addContent = () => {
     const template = fragmentContent.content.cloneNode(true);
@@ -63,7 +63,7 @@ const getActiveSortedPlayers = players => {
 };
 
 const getPlayersWithScore = players => {
-  return players.map(player => ({ ...player, score: calcPlayerScore(player.potted, player.fouls)} ));
+  return players.map(player => ({ ...player, score: calcPlayerScore(player.potted, player.fouls) }));
 };
 
 const getPlayersByTeams = players => {
@@ -91,7 +91,7 @@ const renderPlayers = players => { // 4 Блока 5 Строк
   });
 };
 
-const renderTeams = teams => { // 3 Блока 2 + 1 + 1 Строки
+const renderTeams = teams => { // 3 Блока 1 + 1 + 1 Строки
   Object.entries(teams).forEach(([team, names]) => {
     const newBlock = createBlock();
     newBlock.addContentWithText(team + ': ' + names.join(', '));
