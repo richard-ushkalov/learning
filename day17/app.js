@@ -50,7 +50,7 @@ const calcActiveAverageFouls = players => {
   const activePlayers = players.filter(player => player.isActive);
   const activeCount = activePlayers.length;
 
-  const activeFouls =  activePlayers.reduce((fouls, player) => fouls + player.fouls, 0);
+  const activeFouls = activePlayers.reduce((fouls, player) => fouls + player.fouls, 0);
   
   if (activeCount === 0) { return '0.0'; }
   return (activeFouls / activeCount).toFixed(1);
@@ -63,7 +63,7 @@ const getActiveSortedPlayers = players => {
 };
 
 const getPlayersWithScore = players => {
-  return players.map(player => ({ ...player, score: calcPlayerScore(player.potted, player.fouls)}));
+  return players.map(player => ({ ...player, score: calcPlayerScore(player.potted, player.fouls)} ));
 };
 
 const getPlayersByTeams = players => {
@@ -85,27 +85,27 @@ const renderPlayerWithScore = ({ name, team, potted, fouls, score }) => {
   newBlock.addContentWithText('fouls: ' + fouls);
   newBlock.addContentWithText('score: ' + score);
 };
-const renderPlayers = players => {
+const renderPlayers = players => { // 4 Блока 5 Строк
   players.forEach(player => {
       renderPlayerWithScore(player);
   });
 };
 
-const renderTeams = teams => {
+const renderTeams = teams => { // 3 Блока 2 + 1 + 1 Строки
   Object.entries(teams).forEach(([team, names]) => {
     const newBlock = createBlock();
     newBlock.addContentWithText(team + ': ' + names.join(', '));
   });
 };
 
-const renderTotal = players => {
+const renderTotal = players => { // 1 Блок 3 Строки
   const newBlock = createBlock();
   newBlock.addContentWithText('totalActive: ' + calcActivePlayers(players));
   newBlock.addContentWithText('totalActivePotted: ' + calcActivePotted(players));
   newBlock.addContentWithText('totalActiveAverageFouls: ' + calcActiveAverageFouls(players));
 };
 
-const renderLeader = leader => {
+const renderLeader = leader => { // 1 Блок + 1 Строка
   const newBlock = createBlock();
   newBlock.addContentWithText('leader: ' + leader.name + ' score: ' + leader.score);
 };
