@@ -51,7 +51,7 @@ const calcActiveAverageFouls = players => {
   const activeCount = activePlayers.length;
 
   const activeFouls = activePlayers.reduce((fouls, player) => fouls + player.fouls, 0);
-  
+
   if (activeCount === 0) { return '0.0'; }
   return (activeFouls / activeCount).toFixed(1);
 };
@@ -87,7 +87,7 @@ const renderPlayerWithScore = ({ name, team, potted, fouls, score }) => {
 };
 const renderPlayers = players => { // 4 Блока 5 Строк
   players.forEach(player => {
-      renderPlayerWithScore(player);
+    renderPlayerWithScore(player);
   });
 };
 
