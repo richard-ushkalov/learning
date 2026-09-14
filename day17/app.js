@@ -13,25 +13,24 @@ const fragmentContent = document.querySelector('#template-content');
 const createBlock = () => {
   const initBlock = () => {
     const template = fragmentBlock.content.cloneNode(true);
-    let block = template.querySelector('.block');
+    const block = template.querySelector('.block');
 
     layout.append(block);
 
-    block = block.querySelector('.block__line');
-
     return block;
   };
+
+  const block = initBlock();
+  const blockLine = block.querySelector('.block__line');
 
   const addContent = () => {
     const template = fragmentContent.content.cloneNode(true);
     const content = template.querySelector('.line__content');
 
-    block.append(content);
+    blockLine.append(content);
 
     return content;
   };
-
-  const block = initBlock();
 
   return {
     addContentWithText: (text) => {
