@@ -1,5 +1,12 @@
 import { createBlock } from './block.js';
-import { calcActivePlayers, calcActivePotted, calcActiveAverageFouls, getPlayersWithScore, getActiveSortedPlayers, getPlayersByTeams } from './calc.js';
+import {
+    calcActivePlayers,
+    calcActivePotted,
+    calcActiveAverageFouls,
+    getPlayersWithScore,
+    getActiveSortedPlayers,
+    getPlayersByTeams
+} from './calc.js';
 
 const renderPlayerWithScore = ({ name, team, potted, fouls, score }) => {
   const newBlock = createBlock();
