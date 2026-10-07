@@ -8,7 +8,6 @@ import {
     getPlayersByTeams,
     getPlayersLeader
 } from './calc.js';
-import { getPlayers } from './data.js';
 
 const renderPlayerWithScore = ({ id, name, team, potted, fouls, score }) => {
   const newBlock = createBlock();
