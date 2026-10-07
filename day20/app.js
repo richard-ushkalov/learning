@@ -21,6 +21,12 @@ layout.addEventListener('click', event => {
 
 const sortPanel = document.querySelector('.sort-panel');
 
+const updateButtons = () => {
+  sortPanel.querySelectorAll('[data-sort]').forEach(button => {
+    button.ariaPressed = button.dataset.sort === getSortKey();
+  });
+}
+
 sortPanel.addEventListener('click', event => {
   const button = event.target.closest('[data-sort]');
 
@@ -28,11 +34,10 @@ sortPanel.addEventListener('click', event => {
     return;
   }
 
-  sortPanel.querySelectorAll('[aria-pressed]').forEach(button => button.ariaPressed = false);
-  button.ariaPressed = true;
-
   setSortKey(button.dataset.sort);
+  updateButtons();
   renderPage(getPlayers(), getSortKey());
 });
 
+updateButtons();
 renderPage(getPlayers(), getSortKey());
