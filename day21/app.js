@@ -54,9 +54,12 @@ try {
     }
 
     setPlayers(players);
+    try {
+      renderPage(getPlayers(), getSortKey());
+    } catch {
+      layout.textContent = 'Не удалось отрисовать таблицу';
+    }
   });
-
-  renderPage(getPlayers(), getSortKey());
 } catch (error) {
   console.error(error);
   layout.textContent = 'Не удалось отрисовать таблицу';
