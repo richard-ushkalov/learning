@@ -30,7 +30,7 @@ const updateButtons = () => {
   sortPanel.querySelectorAll('[data-sort]').forEach(button => {
     button.ariaPressed = button.dataset.sort === getSortKey();
   });
-}
+};
 
 sortPanel.addEventListener('click', event => {
   const button = event.target.closest('[data-sort]');
@@ -53,8 +53,10 @@ try {
       return;
     }
 
-    renderPage(players, getSortKey());
+    setPlayers(players);
   });
+
+  renderPage(getPlayers(), getSortKey());
 } catch (error) {
   console.error(error);
   layout.textContent = 'Не удалось отрисовать таблицу';

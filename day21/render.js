@@ -49,7 +49,7 @@ const renderLeader = leader => { // 1 Блок + 1 Строка
 export const renderPage = (players, sortKey) => {
   clearLayout();
 
-  if (!Array.isArray(players)) { return; }
+  if (!Array.isArray(players) || players.length === 0) { return; }
 
   const active = players.filter(player => player.isActive);
   const activeSorted = getActiveSortedPlayers(players, sortKey);

@@ -25,12 +25,11 @@ export const setSortKey = newSortKey => {
 
 export const loadPlayers = onDone => {
     setTimeout(() => {
-        if (players.length === 0) {
-            onDone(new Error('Players length is 0'));
+        if (!players) {
+            onDone(new Error('Не удалось загрузить игроков'));
             return;
         }
         
-        setPlayers(players);
-        onDone(null, getPlayers());
+        onDone(null, players);
     }, 500);
 };

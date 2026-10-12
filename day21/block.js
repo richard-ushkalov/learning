@@ -2,11 +2,11 @@ const layout = document.querySelector('.layout'); // 1 Раз
 
 const fragmentBlock = document.querySelector('#template-block'); // 1 Раз
 if (!fragmentBlock) {
-  throw new Error(`Нет шаблона #template-block`);
+  throw new Error('Нет шаблона #template-block');
 }
 const fragmentContent = document.querySelector('#template-content'); // 1 Раз
 if (!fragmentContent) {
-  throw new Error(`Нет шаблона #template-content`);
+  throw new Error('Нет шаблона #template-content');
 }
 
 export const clearLayout = () => { layout.replaceChildren(); };
@@ -35,7 +35,7 @@ export const createBlock = () => {
 
   const addId = id => {
     blockLine.dataset.id = id;
-  }
+  };
 
   const addButton = (text, action) => {
     const button = document.createElement('button');
