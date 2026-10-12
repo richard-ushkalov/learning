@@ -55,7 +55,12 @@ export const getPlayersLeader = players => {
 export const incrementPlayerField = (players, id, field) => {
   return players.map(player => {
     if (player.id === id) {
-      return { ...player, [field]: player[field] + 1 };
+      try {
+        if (!player[field]) throw new Error(`No ${field} field for player ${id}`);
+        return { ...player, [field]: player[field] + 1 };
+      } catch (error) {
+        console.error(error);
+      }
     }
     
     return player;

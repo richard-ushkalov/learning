@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>День 21</title>
+
+        <link rel="stylesheet" href="styles/base.css">
+        <link rel="stylesheet" href="styles/sort.css">
+        <link rel="stylesheet" href="styles/layout.css">
+        <link rel="stylesheet" href="styles/toast.css">
+        <link rel="stylesheet" href="styles/block.css">
+        <link rel="stylesheet" href="styles/line.css">
+
+        <script type="module" src="app.js"></script>
+    </head>
+    <body>
+        <div class="sort-panel">
+            <button data-sort="potted" type="button">Забито</button>
+            <button data-sort="fouls" type="button">Фолы</button>
+            <button data-sort="name" type="button">Имя</button>
+        </div>
+
+        <ul class="layout"></ul>
+
+        <p class="toast" role="status"></p>
+
+        <template id="template-block">
+            <li class="block">
+                <div class="block__line"></div>
+            </li>
+        </template>
+        <template id="template-content">
+            <div class="line__content"></div>
+        </template>
+    </body>
+</html>
