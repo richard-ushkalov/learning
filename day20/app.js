@@ -40,4 +40,9 @@ sortPanel.addEventListener('click', event => {
 });
 
 updateButtons();
-renderPage(getPlayers(), getSortKey());
+try {
+  renderPage(getPlayers(), getSortKey());
+} catch (error) {
+  console.error(error);
+  layout.textContent = 'Не удалось отрисовать таблицу';
+}
