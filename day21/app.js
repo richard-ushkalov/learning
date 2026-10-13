@@ -41,13 +41,17 @@ sortPanel.addEventListener('click', event => {
 
   setSortKey(button.dataset.sort);
   updateButtons();
-  renderPage(getPlayers(), getSortKey());
+      try {
+      renderPage(getPlayers(), getSortKey());
+    } catch (error) {
+      console.error(error);
+      layout.textContent = 'Не удалось отрисовать таблицу';
+    }
 });
 
 updateButtons();
 layout.textContent = 'Загрузка...';
-try {
-  loadPlayers((error, players) => {
+loadPlayers((error, players) => {
     if (error) {
       layout.textContent = 'Не удалось загрузить игроков';
       return;
@@ -56,11 +60,8 @@ try {
     setPlayers(players);
     try {
       renderPage(getPlayers(), getSortKey());
-    } catch {
+    } catch (error) {
+      console.error(error);
       layout.textContent = 'Не удалось отрисовать таблицу';
     }
-  });
-} catch (error) {
-  console.error(error);
-  layout.textContent = 'Не удалось отрисовать таблицу';
-}
+});
