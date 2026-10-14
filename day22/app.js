@@ -5,6 +5,14 @@ const status = document.querySelector('.group-block__status');
 const title = document.querySelector('.group-block__today-title');
 const list = document.querySelector('.group-block__list');
 
+const renderError = error => {
+    console.error('Не удалось загрузить: ' + error.message);
+    status.textContent = 'Не удалось загрузить: ' + error.message;
+
+    title.textContent = '';
+    todayPlayingButton.disabled = false;
+};
+
 todayPlayingButton.addEventListener('click', () => {
     todayPlayingButton.disabled = true;
     status.textContent = 'Загрузка...';
@@ -13,11 +21,7 @@ todayPlayingButton.addEventListener('click', () => {
 
     loadToday((error, today) => {
         if (error) {
-            console.error('Не удалось загрузить: ' + error.message);
-            status.textContent = error.message;
-
-            todayPlayingButton.disabled = false;
-            status.textContent = '';
+            renderError(error);
 
             return;
         }
@@ -27,11 +31,7 @@ todayPlayingButton.addEventListener('click', () => {
             status.textContent = '';
 
             if (error) {
-                console.error('Не удалось загрузить: ' + error.message);
-                status.textContent = error.message;
-
-                todayPlayingButton.disabled = false;
-                status.textContent = '';
+                renderError(error);
 
                 return;
             }
@@ -44,11 +44,7 @@ todayPlayingButton.addEventListener('click', () => {
                     list.append(participant);
                 });
             } catch (error) {
-                console.error('Не удалось загрузить: ' + error.message);
-                status.textContent = error.message;
-
-                todayPlayingButton.disabled = false;
-                status.textContent = '';
+                renderError(error);
             }
         });
     });

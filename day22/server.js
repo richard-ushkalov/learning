@@ -1,4 +1,4 @@
-const TODAY = 'вторник';
+const TODAY = 'пятница';
 
 const rosters = {
     'вторник': ['Аня', 'Борис', 'Вера'],
