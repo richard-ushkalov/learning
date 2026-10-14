@@ -9,9 +9,9 @@ const rosters = {
 export const loadToday = onDone => {
     setTimeout(() => {
         if (TODAY.trim().length === 0) {
-            onDone(new Error('Сегодняшний день пуст'));
+            return onDone(new Error('Сегодняшний день пуст'));
         }
-        
+
         onDone(null, TODAY);
     }, 500);
 };
@@ -19,9 +19,9 @@ export const loadToday = onDone => {
 export const loadNames = (group, onDone) => {
     setTimeout(() => {
         const names = rosters[group];
-        
+
         if (names === undefined) {
-            return onDone(new Error(`Не удалось загрузить: ${group}`));
+            return onDone(new Error(`Нет состава: ${group}`));
         }
 
         onDone(null, names);
