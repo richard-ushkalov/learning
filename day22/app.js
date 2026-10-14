@@ -2,7 +2,7 @@ import { loadToday, loadNames } from "./server.js";
 
 const todayPlayingButton = document.querySelector('.group-block__today-playing-button');
 const status = document.querySelector('.group-block__status');
-const title = document.querySelector('.group-block__title');
+const title = document.querySelector('.group-block__today-title');
 const list = document.querySelector('.group-block__list');
 
 todayPlayingButton.addEventListener('click', () => {
@@ -14,10 +14,13 @@ todayPlayingButton.addEventListener('click', () => {
     loadToday((error, today) => {
         if (error) {
             console.error('Не удалось загрузить: ' + error.message);
+            status.textContent = error.message;
 
             todayPlayingButton.disabled = false;
             status.textContent = '';
-        };
+
+            return;
+        }
 
         loadNames(today, (error, names) => {
             todayPlayingButton.disabled = false;
@@ -25,8 +28,13 @@ todayPlayingButton.addEventListener('click', () => {
 
             if (error) {
                 console.error('Не удалось загрузить: ' + error.message);
+                status.textContent = error.message;
+
+                todayPlayingButton.disabled = false;
+                status.textContent = '';
+
                 return;
-            };
+            }
 
             title.textContent = `Сегодня: ${today}`;
             try {
@@ -37,6 +45,10 @@ todayPlayingButton.addEventListener('click', () => {
                 });
             } catch (error) {
                 console.error('Не удалось загрузить: ' + error.message);
+                status.textContent = error.message;
+
+                todayPlayingButton.disabled = false;
+                status.textContent = '';
             }
         });
     });
