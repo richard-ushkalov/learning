@@ -10,6 +10,8 @@ const renderError = error => {
     status.textContent = 'Не удалось загрузить: ' + error.message;
 
     title.textContent = '';
+    list.replaceChildren();
+
     todayPlayingButton.disabled = false;
 };
 
@@ -19,24 +21,16 @@ todayPlayingButton.addEventListener('click', () => {
     title.textContent = '';
     list.replaceChildren();
 
-    loadToday((error, today) => {
-        if (error) {
-            renderError(error);
+    loadToday()
+        .then(group => {
+            title.textContent = `Сегодня: ${group}`;
 
-            return;
-        }
-
-        loadNames(today, (error, names) => {
+            return loadNames(group);
+        })
+        .then(names => {
             todayPlayingButton.disabled = false;
             status.textContent = '';
 
-            if (error) {
-                renderError(error);
-
-                return;
-            }
-
-            title.textContent = `Сегодня: ${today}`;
             try {
                 names.forEach(name => {
                     const participant = document.createElement('li');
@@ -46,6 +40,6 @@ todayPlayingButton.addEventListener('click', () => {
             } catch (error) {
                 renderError(error);
             }
-        });
-    });
+        })
+        .catch(error => renderError(error));
 });
