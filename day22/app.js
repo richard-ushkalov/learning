@@ -16,10 +16,11 @@ const renderError = error => {
 };
 
 todayPlayingButton.addEventListener('click', () => {
-    todayPlayingButton.disabled = true;
     status.textContent = 'Загрузка...';
     title.textContent = '';
     list.replaceChildren();
+
+    todayPlayingButton.disabled = true;
 
     loadToday()
         .then(group => {
@@ -31,15 +32,16 @@ todayPlayingButton.addEventListener('click', () => {
             todayPlayingButton.disabled = false;
             status.textContent = '';
 
-            try {
-                names.forEach(name => {
-                    const participant = document.createElement('li');
-                    participant.textContent = name;
-                    list.append(participant);
-                });
-            } catch (error) {
-                renderError(error);
-            }
+            names.forEach(name => {
+                const participant = document.createElement('li');
+                participant.textContent = name;
+                list.append(participant);
+            });
         })
-        .catch(error => renderError(error));
+        .catch(renderError)
+        .finally(() => {
+            status.textContent = '';
+
+            todayPlayingButton.disabled = false;
+        });
 });
