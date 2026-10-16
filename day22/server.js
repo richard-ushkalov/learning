@@ -1,4 +1,4 @@
-const TODAY = 'пятница';
+const TODAY = 'вторник';
 
 const rosters = {
     'вторник': ['Аня', 'Борис', 'Вера'],
@@ -6,24 +6,30 @@ const rosters = {
     'пятница': null,
 };
 
-export const loadToday = onDone => {
-    setTimeout(() => {
-        if (TODAY.trim().length === 0) {
-            return onDone(new Error('Сегодняшний день пуст'));
-        }
+export const loadToday = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (TODAY.trim().length === 0) {
+                reject(new Error('Сегодняшний день пуст'));
+                return;
+            }
 
-        onDone(null, TODAY);
-    }, 500);
+            resolve(TODAY);
+        }, 500);
+    });
 };
 
-export const loadNames = (group, onDone) => {
-    setTimeout(() => {
-        const names = rosters[group];
+export const loadNames = group => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const names = rosters[group];
 
-        if (names === undefined) {
-            return onDone(new Error(`Нет состава: ${group}`));
-        }
+            if (names === undefined) {
+                reject(new Error(`Нет состава: ${group}`));
+                return;
+            }
 
-        onDone(null, names);
-    }, 500);
+            resolve(names);
+        }, 500);
+    });
 };
