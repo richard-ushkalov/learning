@@ -11,8 +11,6 @@ const renderError = error => {
 
     title.textContent = '';
     list.replaceChildren();
-
-    todayPlayingButton.disabled = false;
 };
 
 todayPlayingButton.addEventListener('click', () => {
@@ -29,7 +27,6 @@ todayPlayingButton.addEventListener('click', () => {
             return loadNames(group);
         })
         .then(names => {
-            todayPlayingButton.disabled = false;
             status.textContent = '';
 
             names.forEach(name => {
@@ -40,8 +37,6 @@ todayPlayingButton.addEventListener('click', () => {
         })
         .catch(renderError)
         .finally(() => {
-            status.textContent = '';
-
             todayPlayingButton.disabled = false;
         });
 });
