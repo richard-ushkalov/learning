@@ -13,6 +13,16 @@ const renderError = error => {
     list.replaceChildren();
 };
 
+const handle = async (callback) => {
+    try {
+        await callback();
+    } catch (error) {
+        renderError(error);
+    } finally {
+        todayPlayingButton.disabled = false;
+    }
+}
+
 const loadGroup = async () => {
     status.textContent = 'Загрузка...';
     title.textContent = '';
@@ -35,9 +45,5 @@ const loadGroup = async () => {
 };
 
 todayPlayingButton.addEventListener('click', () => {
-    loadGroup()
-        .catch(renderError)
-        .finally(() => {
-            todayPlayingButton.disabled = false;
-        });
+    handle(loadGroup);
 });
