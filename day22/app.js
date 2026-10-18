@@ -14,6 +14,8 @@ const renderError = error => {
 };
 
 const handle = async (callback) => {
+    todayPlayingButton.disabled = true;
+
     try {
         await callback();
     } catch (error) {
@@ -27,8 +29,6 @@ const loadGroup = async () => {
     status.textContent = 'Загрузка...';
     title.textContent = '';
     list.replaceChildren();
-
-    todayPlayingButton.disabled = true;
 
     const group = await loadToday();
     const names = await loadNames(group);
