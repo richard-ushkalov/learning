@@ -13,28 +13,29 @@ const renderError = error => {
     list.replaceChildren();
 };
 
-todayPlayingButton.addEventListener('click', () => {
+const loadGroup = async () => {
     status.textContent = 'Загрузка...';
     title.textContent = '';
     list.replaceChildren();
 
     todayPlayingButton.disabled = true;
 
-    loadToday()
-        .then(group => {
-            title.textContent = `Сегодня: ${group}`;
+    const group = await loadToday();
+    const names = await loadNames(group);
 
-            return loadNames(group);
-        })
-        .then(names => {
-            status.textContent = '';
+    title.textContent = `Сегодня: ${group}`;
 
-            names.forEach(name => {
-                const participant = document.createElement('li');
-                participant.textContent = name;
-                list.append(participant);
-            });
-        })
+    status.textContent = '';
+
+    names.forEach(name => {
+        const participant = document.createElement('li');
+        participant.textContent = name;
+        list.append(participant);
+    });
+};
+
+todayPlayingButton.addEventListener('click', () => {
+    loadGroup()
         .catch(renderError)
         .finally(() => {
             todayPlayingButton.disabled = false;

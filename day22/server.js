@@ -6,30 +6,32 @@ const rosters = {
     'пятница': null,
 };
 
-export const loadToday = () => {
-    return new Promise((resolve, reject) => {
+const wait = ms => {
+    return new Promise(resolve => {
         setTimeout(() => {
-            if (TODAY.trim().length === 0) {
-                reject(new Error('Сегодняшний день пуст'));
-                return;
-            }
-
-            resolve(TODAY);
-        }, 500);
+            resolve();
+        }, ms);
     });
 };
 
-export const loadNames = group => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const names = rosters[group];
+export const loadToday = async () => {
+    await wait(500);
+    
+    if (TODAY.trim().length === 0) {
+        throw new Error('Сегодняшний день пуст');
+    }
 
-            if (names === undefined) {
-                reject(new Error(`Нет состава: ${group}`));
-                return;
-            }
+    return TODAY;
+};
 
-            resolve(names);
-        }, 500);
-    });
+export const loadNames = async (group) => {
+    await wait(500);
+    
+    const names = rosters[group];
+
+    if (names === undefined) {
+        throw new Error(`Нет состава: ${group}`);
+    }
+
+    return names;
 };
