@@ -1,6 +1,6 @@
 import { searchTracks } from "./api.js";
 
-const shelfArtists = [ 'Gallant', 'Kellela', 'FKA Twigs' ];
+const shelfArtists = [ 'Gallant', 'Kelela', 'FKA Twigs' ];
 
 const searchInput = document.querySelector('.search__input');
 const searchStatus = document.querySelector('.search__status');
