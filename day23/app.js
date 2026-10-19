@@ -1,5 +1,7 @@
 import { searchTracks } from "./api.js";
 
+const shelfArtists = [ 'Gallant', 'Kellela', 'FKA Twigs' ];
+
 const searchInput = document.querySelector('.search__input');
 const searchStatus = document.querySelector('.search__status');
 const searchList = document.querySelector('.search__list');
@@ -21,9 +23,6 @@ const shelfTemplate = loadTemplate('shelf-template');
 
 const show = (text = '') => {
     searchStatus.textContent = text;
-    if (text.trim().length !== 0) {
-        console.log(text);
-    }
 };
 
 const createTrack = (title, artist, artwork) => {
@@ -36,58 +35,47 @@ const createTrack = (title, artist, artwork) => {
     return track;
 };
 
-const renderList = tracks => {
-    searchList.replaceChildren();
+const renderTracks = (list, tracks) => {
+    list.replaceChildren();
 
-    Array.from(tracks).forEach(({ trackName, artistName, artworkUrl100 }) => {
-        searchList.append(createTrack(trackName, artistName, artworkUrl100));
+    tracks.forEach(({ trackName, artistName, artworkUrl100 }) => {
+        list.append(createTrack(trackName, artistName, artworkUrl100));
     });
 };
 
-const createShelf = (tracks) => {
+const createShelf = artist => {
     const shelf = shelfTemplate.content.cloneNode(true);
 
     const status = shelf.querySelector('.shelf__status');
     const title = shelf.querySelector('.shelf__title');
     const list = shelf.querySelector('.shelf__list');
 
+    startingBlockShelves.append(shelf);
+
     status.textContent = 'Загрузка...';
 
-    title.textContent = tracks[0].artistName;
+    title.textContent = artist;
 
-    Array.from(tracks).forEach(({ trackName, artistName, artworkUrl100 }) => {
-        list.append(createTrack(trackName, artistName, artworkUrl100));
-    });
-
-    status.textContent = '';
-
-    return shelf;
-};
-
-const renderStartingShelf = async (request) => {
-    const tracks = await searchTracks(request, 3);
-
-    if (tracks.length === 0) {
-        show(`Не найдено треков по запросу ${request}`);
-        return;
-    }
-
-    const startingShelf = createShelf(tracks);
-
-    startingBlockShelves.append(startingShelf);
+    return { status, list };
 };
 
 let timerId = null;
+let lastRequest = 0;
 
-const onInput = async (input) => {
+const onInput = term => {
     clearTimeout(timerId);
 
-    if (input.trim().length === 0) {
+    if (term.trim().length === 0) {
+        lastRequest++;
+
+        show();
+        searchList.replaceChildren();
+
         return;
     }
 
     timerId = setTimeout(() => {
-        runSearch(input);
+        runSearch(term);
     }, 300);
 };
 
@@ -95,26 +83,27 @@ searchInput.addEventListener('input', () => {
     onInput(searchInput.value);
 });
 
-let lastRequest = 0;
-
-const runSearch = async (input) => {
+const runSearch = async (term) => {
     lastRequest++;
     const request = lastRequest;
 
     show('Загрузка...');
+    
+    searchList.replaceChildren();
 
     try {
-        const tracks = await searchTracks(input);
+        const tracks = await searchTracks(term);
 
         if (request !== lastRequest) {
             return;
         }
+
         if (tracks.length === 0) {
-            show(`Не найдено треков по запросу ${input}`);
+            show(`Не найдено треков по запросу: ${term}`);
             return;
         }
 
-        renderList(tracks);
+        renderTracks(searchList, tracks);
 
         show();
     } catch(error) {
@@ -128,11 +117,26 @@ const runSearch = async (input) => {
 
 const run = async () => {
     try {
-        await Promise.all([
-            renderStartingShelf('Gallant'),
-            renderStartingShelf('Kelela'),
-            renderStartingShelf('FKA Twigs'),
-        ]);
+        const shelves = shelfArtists.map(createShelf);
+
+        const results = await Promise.allSettled(shelfArtists.map(artist => searchTracks(artist, 3)));
+
+        results.forEach((result, index) => {
+            if (result.status === 'rejected') {
+                shelves[index].status.textContent = `Не удалось загрузить полку: ${result.reason}`;
+
+                return;
+            }
+            if (result.value.length === 0) {
+                shelves[index].status.textContent = `Ничего не найдено`;
+
+                return;
+            }
+
+            renderTracks(shelves[index].list, result.value);
+
+            shelves[index].status.textContent = '';
+        });
     } catch (error) {
         show(`Ошибка: ${error.message}`);
     }
