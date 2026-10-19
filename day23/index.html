@@ -9,25 +9,39 @@
         <script src="app.js" type="module"></script>
     </head>
     <body>
-        <div class="search">
-            <label>Поле поиска</label>
-            <input class="search__input" type="search">
+        <main>
+            <h1>Поиск треков</h1>
 
-            <p role="search__status"></p>
+            <search class="search">
+                <label for="tracks">Введите название трека
+                    <input id="tracks" class="search__input" type="search" name="tracks-search">
+                </label>
 
-            <ul class="search__list"></ul>
-        </div>
+                <p class="search__status" role="status"></p>
 
-        <div class="beginner-block">
-            <ul class="beginner-block__first-artist"></ul>
-            <ul class="beginner-block__second-artist"></ul>
-            <ul class="beginner-block__third-artist"></ul>
-        </div>
+                <ul class="search__list"></ul>
+            </search>
 
-        <template class="element-template">
-            <image class="artwork" src="" alt=""></image>
-            <p class="track"></p>
-            <p class="artist"></p>
-        </template>
+            <section class="starting-block">
+                <h2 class="starting-block__title">Для начала</h2>
+                <div class="starting-block__shelves"></div>
+            </section>
+
+            <template class="track-template">
+                <li class="track">
+                    <img class="track__artwork" width="100" height="100" loading="lazy" alt="">
+                    <p class="track__title"></p>
+                    <p class="track__artist"></p>
+                </li>
+            </template>
+
+            <template class="shelf-template">
+                <section class="shelf">
+                    <h3 class="shelf__title"></h3>
+                    <p class="shelf__status" role="status"></p>
+                    <ul class="shelf__list"></ul>
+                </section>
+            </template>
+        </main>
     </body>
 </html>
