@@ -1,6 +1,6 @@
 import type { Player } from './types.ts';
 
-const initialPlayers: Player[] = [
+export const initialPlayers: Player[] = [
   { id: 'p1', name: 'Аня', team: 'красные', potted: 8, fouls: 3, isActive: true },
   { id: 'p2', name: 'Борис', team: 'красные', potted: 8, fouls: 1, isActive: true },
   { id: 'p3', name: 'Вера', team: 'синие', potted: 3, fouls: 2, isActive: true },
