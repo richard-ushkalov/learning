@@ -23,9 +23,9 @@ export const App = () => {
   return (
     <>
       <div className="sort-panel">
-        <button type="button" onClick={() => setSortKey('potted')}>Забито</button>
-        <button type="button" onClick={() => setSortKey('fouls')}>Фолы</button>
-        <button type="button" onClick={() => setSortKey('name')}>Имя</button>
+        <button type="button" aria-pressed={sortKey === 'potted'} onClick={() => setSortKey('potted')}>Забито</button>
+        <button type="button" aria-pressed={sortKey === 'fouls'} onClick={() => setSortKey('fouls')}>Фолы</button>
+        <button type="button" aria-pressed={sortKey === 'name'} onClick={() => setSortKey('name')}>Имя</button>
       </div>
 
       <Page players={players} sortKey={sortKey} onIncrement={handleIncrement}/>
