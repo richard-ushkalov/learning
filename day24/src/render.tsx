@@ -1,4 +1,4 @@
-import type { Player, ScoredPlayer, SortKey } from './types.ts';
+import type { Player, ScoredPlayer, ScoreField, SortKey } from './types.ts';
 import {
     calcActivePlayers,
     calcActivePotted,
@@ -12,9 +12,10 @@ import { Block } from './block.tsx';
 
 type PlayerWithScoreProps = {
   scoredPlayer: ScoredPlayer;
+  onIncrement: (id: string, field: ScoreField) => void;
 }
 
-const PlayerWithScore = ({ scoredPlayer }: PlayerWithScoreProps) => {
+const PlayerWithScore = ({ scoredPlayer, onIncrement }: PlayerWithScoreProps) => {
   return (
     <Block>
       <div className='line__content'>{ 'name: ' + scoredPlayer.name }</div>
@@ -22,18 +23,19 @@ const PlayerWithScore = ({ scoredPlayer }: PlayerWithScoreProps) => {
       <div className='line__content'>{ 'potted: ' + scoredPlayer.potted }</div>
       <div className='line__content'>{ 'fouls: ' + scoredPlayer.fouls }</div>
       <div className='line__content'>{ 'score: ' + scoredPlayer.score }</div>
-      <button type='button'>+1 забитый</button>
-      <button type='button'>+1 фол</button>
+      <button type='button' onClick={() => onIncrement( scoredPlayer.id, 'potted')}>+1 забитый</button>
+      <button type='button' onClick={() => onIncrement( scoredPlayer.id, 'fouls')}>+1 фол</button>
     </Block>
   )
 };
 
 type PlayersProps = {
   players: ScoredPlayer[];
+  onIncrement: (id: string, field: ScoreField) => void;
 }
 
-const Players = ({ players }: PlayersProps) => {
-  return players.map(player => <PlayerWithScore scoredPlayer={player} />);
+const Players = ({ players, onIncrement }: PlayersProps) => {
+  return players.map(player => <PlayerWithScore key={player.id} scoredPlayer={player} onIncrement={onIncrement} />);
 };
 
 type TeamsProps = {
@@ -81,10 +83,11 @@ const Leader = ({ leader }: LeaderProps) => {
 type PageProps = {
   players: Player[];
   sortKey: SortKey;
+  onIncrement: (id: string, field: ScoreField) => void;
 }
 
-export const Page = ({ players, sortKey }: PageProps) => {
-  if (!Array.isArray(players) || players.length === 0) { return; }
+export const Page = ({ players, sortKey, onIncrement }: PageProps) => {
+  if (players.length === 0) { return; }
 
   const active = players.filter(player => player.isActive);
   const activeSorted = getActiveSortedPlayers(players, sortKey);
@@ -93,11 +96,11 @@ export const Page = ({ players, sortKey }: PageProps) => {
   const teams = getPlayersByTeams(active);
 
   return (
-    <>
-      <Players players={activeSortedWithScore} />
+    <ul className="layout">
+      <Players players={activeSortedWithScore} onIncrement={onIncrement} />
       <Teams teams={teams} />
       <Total players={players} />
-      {activeLeader && <Leader leader={activeLeader} />}
-    </>
+      {activeLeader !== undefined && <Leader leader={activeLeader} />}
+    </ul>
   );
 };
