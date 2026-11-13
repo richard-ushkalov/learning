@@ -8,11 +8,17 @@ import './styles/layout.css';
 import './styles/block.css';
 import './styles/line.css';
 import './styles/sort.css';
+
+import type { ScoreField } from './types.ts';
 import { incrementPlayerField } from './calc.ts';
 
 export const App = () => {
   const [players, setPlayers] = useState(initialPlayers);
   const [sortKey, setSortKey] = useState(initialSortKey);
+
+  const handleIncrement = (id: string, field: ScoreField) => {
+    setPlayers(current => incrementPlayerField(current, id, field));
+  };
 
   return (
     <>
@@ -22,7 +28,7 @@ export const App = () => {
         <button type="button" onClick={() => setSortKey('name')}>Имя</button>
       </div>
 
-      <Page players={players} sortKey={sortKey} onIncrement={incrementPlayerField}/>
+      <Page players={players} sortKey={sortKey} onIncrement={handleIncrement}/>
     </>
   );
 };
