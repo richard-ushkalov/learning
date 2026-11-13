@@ -1,0 +1,32 @@
+.block { transition: padding-block 400ms ease-in-out; }
+
+.block__line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+    gap: 10px;
+
+    outline: 0px solid white;
+    background-color: white;
+
+    transition: margin-inline 400ms ease-in-out,
+                outline-width 400ms ease-in-out,
+                outline-color 400ms ease-in-out,
+                border-radius 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
+}
+@media (hover: hover) {
+    .block:hover {
+        padding-block: 1rem;
+
+        .block__line {
+            margin-inline: 1rem;
+            outline-width: 0.5px;
+            outline-color: gray;
+            border-radius: 0.25rem;
+            box-shadow: 0px 0px 8px 0px rgb(0 0 0 / 0.1);
+        }
+    }
+}

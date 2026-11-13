@@ -33,13 +33,17 @@
 
 // updateButtons();
 
-import { initialPlayers } from "./data";
-import { renderPage } from "./render";
+import { initialPlayers } from "./data.ts";
+import { Page } from "./render.tsx";
+
+import './styles/base.css';
+import './styles/layout.css';
+import './styles/block.css';
+import './styles/line.css';
+import './styles/sort.css';
 
 export const App = () => {
   const players = initialPlayers;
-
-  renderPage(players, 'name');
 
   return (
     <>
@@ -48,6 +52,8 @@ export const App = () => {
         <button data-sort="fouls" type="button">Фолы</button>
         <button data-sort="name" type="button">Имя</button>
       </div>
+
+      <Page players={players} sortKey={'name'} />
     </>
   );
 };

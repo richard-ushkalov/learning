@@ -1,0 +1,12 @@
+.sort-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+    gap: 10px;
+}
+
+[aria-pressed="true"] {
+    color: green;
+}
