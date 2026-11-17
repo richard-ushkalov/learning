@@ -9,7 +9,7 @@ import { ShelfItem } from './ShelfItem.tsx';
 const shelfArtists = ['Gallant', 'Kelela', 'FKA Twigs'];
 
 export const App = () => {
-  const [artist, setArtist] = useState('Gallant');
+  const [artist, setArtist] = useState('Kelela');
   const [tracks, setTracks] = useState<Track[]>([]);
 
   useEffect(() => {
