@@ -7,13 +7,12 @@ import { searchTracks } from './api.ts';
 import { ShelfItem } from './ShelfItem.tsx';
 
 export const App = () => {
+  const [artist, setArtist] = useState('Kelela');
   const [tracks, setTracks] = useState<Track[]>([]);
-
-  const artist = 'Kelela';
 
   useEffect(() => {
     searchTracks(artist, 3).then(setTracks);
-  }, []);
+  }, [artist]);
 
   return (
     <main>
