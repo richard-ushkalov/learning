@@ -2,7 +2,7 @@ import type { Track } from './types.ts';
 
 type TrackItemProps = {
   track: Track;
-}
+};
 
 export const TrackItem = ({ track }: TrackItemProps) => {
   return (

@@ -2,9 +2,9 @@ import { TrackItem } from './TrackItem.tsx';
 import type { Track } from './types.ts';
 
 type ShelfItemProps = {
-  title: string
+  title: string;
   tracks: Track[];
-}
+};
 
 export const ShelfItem = ({ title, tracks }: ShelfItemProps) => {
   return (
@@ -15,5 +15,5 @@ export const ShelfItem = ({ title, tracks }: ShelfItemProps) => {
         {tracks.map(track => <TrackItem key={track.trackId} track={track} />)}
       </ul>
     </section>
-  )
+  );
 };
