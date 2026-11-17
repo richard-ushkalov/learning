@@ -9,8 +9,10 @@ import { ShelfItem } from './ShelfItem.tsx';
 export const App = () => {
   const [tracks, setTracks] = useState<Track[]>([]);
 
+  const artist = 'Kelela';
+
   useEffect(() => {
-    searchTracks('Kelela', 3).then(setTracks);
+    searchTracks(artist, 3).then(setTracks);
   }, []);
 
   return (
@@ -20,7 +22,7 @@ export const App = () => {
       <section className="starting-block">
         <h2 className="starting-block__title">Для начала</h2>
         <div className="starting-block__shelves">
-          <ShelfItem title={tracks[0].artistName} tracks={tracks} />
+          <ShelfItem title={artist} tracks={tracks} />
         </div>
       </section>
     </main>
