@@ -12,8 +12,25 @@ export const App = () => {
   const [artist, setArtist] = useState('Kelela');
   const [tracks, setTracks] = useState<Track[]>([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
-    searchTracks(artist, 3).then(setTracks);
+    const load = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const found = await searchTracks(artist, 3);
+        setTracks(found);
+      } catch (error) {
+        setError(error instanceof Error ? error.message : String(error));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    load();
   }, [artist]);
 
   return (
@@ -35,7 +52,7 @@ export const App = () => {
           )}
         </div>
         <div className="starting-block__shelves">
-          <ShelfItem title={artist} tracks={tracks} />
+          <ShelfItem title={artist} isLoading={isLoading} error={error} tracks={tracks} />
         </div>
       </section>
     </main>
