@@ -26,6 +26,7 @@ export const App = () => {
           {shelfArtists.map(shelfArtist =>
             <button
               key={shelfArtist}
+              type="button"
               aria-pressed={shelfArtist === artist}
               onClick={() => setArtist(shelfArtist)}
             >
