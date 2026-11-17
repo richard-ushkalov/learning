@@ -1,4 +1,4 @@
-import type { Track } from "./types";
+import type { Track } from './types.ts'
 
 export const searchTracks = async (term: string, limit = 10): Promise<Track[]> => {
   const params = new URLSearchParams({ term, media: 'music', entity: 'song', limit: String(limit) });
