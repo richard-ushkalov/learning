@@ -25,11 +25,13 @@ export const Search = () => {
   }, [query]);
 
   useEffect(() => {
-    if (term === '') {
-      return;
-    }
-
     let ignore = false;
+
+    if (term === '') {
+      return () => {
+        ignore = true;
+      };
+    }
 
     const load = async () => {
       setIsLoading(true);
@@ -89,7 +91,7 @@ export const Search = () => {
       <p className="search__status" role="status">{status}</p>
 
       <ul className="search__list">
-        {term.length != 0 && results.map(result => (
+        {(status === '' && term.length !== 0) && results.map(result => (
           <TrackItem key={result.trackId} track={result} />
         ))}
       </ul>
