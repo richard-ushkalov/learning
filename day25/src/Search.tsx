@@ -65,7 +65,7 @@ export const Search = () => {
 
   let status = '';
 
-  if (term.length != 0) {
+  if (term.length === 0) {
     status = '';
   } else if (isLoading) {
     status = 'Загрузка...';
