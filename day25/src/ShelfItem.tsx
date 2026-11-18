@@ -1,5 +1,6 @@
-import { TrackItem } from './TrackItem.tsx';
 import type { Track } from './types.ts';
+
+import { TrackItem } from './TrackItem.tsx';
 
 type ShelfItemProps = {
   title: string;
