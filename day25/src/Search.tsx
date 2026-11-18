@@ -25,13 +25,11 @@ export const Search = () => {
   }, [query]);
 
   useEffect(() => {
-    let ignore = false;
-
     if (term === '') {
-      return () => {
-        ignore = true;
-      };
+      return;
     }
+
+    let ignore = false;
 
     const load = async () => {
       setIsLoading(true);
@@ -67,11 +65,13 @@ export const Search = () => {
 
   let status = '';
 
-  if (isLoading) {
+  if (term.length != 0) {
+    status = '';
+  } else if (isLoading) {
     status = 'Загрузка...';
   } else if (error) {
     status = `Не удалось найти трек: ${error}`;
-  } else if (term.length != 0 && results.length === 0) {
+  } else if (results.length === 0) {
     status = 'Ничего не найдено';
   }
 
